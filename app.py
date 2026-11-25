@@ -11,7 +11,7 @@ import unicodedata
 
 ROOT = Path(__file__).parent
 PORT = 8765
-CACHE_VERSION = 30
+CACHE_VERSION = 31
 NS = {'m': 'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
 UPLOAD_CATEGORIES = {
     'items': 'Položky tovaru',
@@ -21,6 +21,7 @@ UPLOAD_CATEGORIES = {
     'deliveries': 'Účtované predajné dodávky',
     'customer-directory': 'Zoznam zákazníkov',
     'dimensions': 'Dimenzie',
+    'account-map': 'Hlavná kniha',
 }
 WORKBOOK_SHEET_CATEGORIES = {
     'Položky tovaru': 'items',
@@ -29,6 +30,7 @@ WORKBOOK_SHEET_CATEGORIES = {
     'Položky zákazníka': 'customers',
     'Účtované predajné dodávky': 'deliveries',
     'Zoznam zákazníkov': 'customer-directory',
+    'Hlavná kniha': 'account-map',
 }
 
 def cell_value(cell, shared):
@@ -246,6 +248,7 @@ def _load_data():
             continue
         is_dimensions_source = normalized_name.startswith('Dimenzie')
         is_account_source = normalized_name.startswith('Vecné položky')
+        is_main_ledger_source = normalized_name.startswith('Hlavná kniha')
         excluded_account_source = account_export and is_account_source and path not in account_paths
         try:
             sheets = excel_rows(path)
@@ -253,7 +256,9 @@ def _load_data():
             continue
         if not sheets:
             continue
-        file_periods = {date_label(row.get('A')) for _, rows in sheets for row in rows[1:]}
+        file_periods = set() if is_main_ledger_source else {
+            date_label(row.get('A')) for _, rows in sheets for row in rows[1:]
+        }
         dated_periods = sorted(
             period for period in file_periods if re.fullmatch(r'\d{4}-\d{2}', period))
         if any(normalized_name.startswith(prefix) for prefix in UPLOAD_CATEGORIES.values()):
@@ -277,6 +282,8 @@ def _load_data():
             'period_start': dated_periods[0] if dated_periods else '',
             'period_end': dated_periods[-1] if dated_periods else '',
         })
+        if is_main_ledger_source:
+            continue
         for _, rows in sheets:
             if not rows:
                 continue

@@ -28,6 +28,15 @@
 .section-tabs button:hover{color:var(--teal);background:#e6efe880}
 .section-tabs button[aria-selected="true"]{border-bottom-color:var(--teal);color:var(--teal)}
 .section-tabs button:focus-visible{outline:2px solid var(--teal);outline-offset:-2px}
+.monthly-results-table{width:100%;min-width:1050px;table-layout:fixed}
+.monthly-results-table th{white-space:normal;line-height:1.25;vertical-align:bottom;text-align:center}
+.monthly-results-table th:first-child{width:10%;text-align:left}
+.monthly-results-table th:nth-child(2){width:15%}
+.monthly-results-table th:nth-child(3){width:15%}
+.monthly-results-table th:nth-child(4){width:16%}
+.monthly-results-table th:nth-child(5){width:16%}
+.monthly-results-table th:nth-child(6){width:15%}
+.monthly-results-table th:nth-child(7){width:13%}
 </style></head>
 <body><div class="app-shell">
 <aside class="sidebar"><div class="sidebar-brand"><strong>TMV · hospodárenie</strong><span>Pracovný prehľad</span></div><div><nav class="sidebar-nav" aria-label="Prehľady a analýzy"><span class="sidebar-label">Prehľad</span><button type="button" data-section="overview" class="active">Hlavný prehľad</button><span class="sidebar-label">Hospodárenie</span><button type="button" data-section="annual">Výsledky podľa rokov</button><button type="button" data-section="monthly-results">Výsledky hospodárenia podľa mesiacov</button><button type="button" data-section="proposal">Rozbor hospodárenia</button><span class="sidebar-label">Náklady</span><button type="button" data-section="account-costs">Náklady podľa účtovej triedy</button><button type="button" data-section="expense-breakdown">Rozpis nákladov podľa mesiacov</button><button type="button" data-section="suppliers">Top dodávatelia</button><span class="sidebar-label">Predaj a zákazníci</span><button type="button" data-section="customer-revenue">Tržby podľa zákazníka</button><button type="button" data-section="customer-profit">Ziskovosť podľa zákazníka</button><button type="button" data-section="product-profit">Ziskovosť podľa produktu / vody</button><button type="button" data-section="delivery-profit">Zisk po doprave podľa zákazníka</button></nav></div></aside>
@@ -40,7 +49,7 @@
 <article class="panel wide"><h2>Porovnanie mesiacov</h2><div class="controls"><label for="compare-year">Rok</label><select id="compare-year"><option value="2026">2026 oproti 2025</option><option value="2025">2025 oproti 2024</option><option value="2024">2024 oproti 2023</option></select><div class="compare-month-control"><span id="compare-month-label">Mesiac</span><input id="compare-month" type="hidden" value="all"><div id="compare-month-picker" class="compare-month-picker" role="group" aria-labelledby="compare-month-label"></div></div></div><div class="metric-filter"><label><input type="checkbox" value="Tržby" checked onchange="filterMetrics()"> Tržby</label><label><input type="checkbox" value="Náklad tovaru" checked onchange="filterMetrics()"> Náklad tovaru</label><label><input type="checkbox" value="Hrubý zisk" checked onchange="filterMetrics()"> Hrubý zisk</label><label><input type="checkbox" value="Množstvo" checked onchange="filterMetrics()"> Množstvo</label><label><input type="checkbox" value="Priemer €/ks" checked onchange="filterMetrics()"> Priemer €/ks</label></div><div class="table-wrap"><table class="comparison-table"><thead><tr><th>Ukazovateľ</th><th id="current-label">2026</th><th id="previous-label">2025</th><th>Rozdiel</th><th>Zmena</th></tr></thead><tbody id="monthly-table"></tbody></table></div><p class="hint"><strong>Čo tabuľka obsahuje:</strong> Aktuálne obdobie, porovnávaný minulý rok, rozdiel a percentuálnu zmenu. Zdrojom sú <em>Položky tovaru</em>; obdobie sa určuje podľa dátumu zaúčtovania. Výber „Celý rok“ znamená všetky dostupné mesiace daného roka.</p></article>
 <article class="panel"><h2>Náklady podľa účtovej triedy · <span id="current-year-title">aktuálny rok</span></h2><div id="categories"></div><p class="hint">Hlavný prehľad zobrazuje aktuálny rok. Historické roky sú v porovnávacej tabuľke.</p></article>
 <article class="panel wide"><h2>Vývoj celkových nákladov</h2><p class="hint">Všetky náklady z hlavnej knihy, účty 5: materiál, služby, mzdy, doprava, réžia, opravy, odpisy a ďalšie. Vyber roky a mesiace na porovnanie.</p><details class="filter-menu"><summary>Roky</summary><div class="year-filter" id="year-filter"></div></details><details class="filter-menu"><summary>Mesiace</summary><div class="month-filter" id="month-filter"></div></details><select id="chart-year" hidden><option value="all">Všetky roky</option></select><select id="chart-month" hidden><option value="all">Všetky mesiace</option></select><div class="legend" id="chart-legend"></div><div class="chart" id="chart"></div></article>
-<article class="panel wide"><h2>Výsledky hospodárenia podľa mesiacov</h2><div class="table-wrap"><table class="comparison-table"><thead><tr><th>Mesiac</th><th>Tržby · položky tovaru</th><th>Priamy náklad · položky tovaru</th><th>Doprava spárovaných dodávok</th><th>Náklady účtov 5 · vecné položky</th><th>Prevádzkový výsledok · účtovníctvo</th><th>Čistý výsledok · účtovníctvo</th></tr></thead><tbody id="report-months"></tbody></table></div><p class="hint">Údaje sa počítajú z nahratých exportov Položky tovaru, Vecné položky a Účtované predajné dodávky. Októbrový súbor TMV rozbor sa používa len ako vzor a do výpočtov ani zoznamu podkladov sa nezahŕňa. Doprava je informatívny súčet spárovaných dodávok a je už zahrnutá v účtovných nákladoch; nepripočítavajte ju k nim druhýkrát.</p></article>
+<article class="panel wide"><h2>Výsledky hospodárenia podľa mesiacov</h2><div class="table-wrap"><table class="comparison-table monthly-results-table"><thead><tr><th>Mesiac</th><th>Tržby · položky tovaru</th><th>Priamy náklad · položky tovaru</th><th>Doprava spárovaných dodávok</th><th>Náklady účtov 5 · vecné položky</th><th>Prevádzkový výsledok · účtovníctvo</th><th>Čistý výsledok · účtovníctvo</th></tr></thead><tbody id="report-months"></tbody></table></div><p class="hint">Údaje sa počítajú z nahratých exportov Položky tovaru, Vecné položky a Účtované predajné dodávky. Októbrový súbor TMV rozbor sa používa len ako vzor a do výpočtov ani zoznamu podkladov sa nezahŕňa. Doprava je informatívny súčet spárovaných dodávok a je už zahrnutá v účtovných nákladoch; nepripočítavajte ju k nim druhýkrát.</p></article>
 <article class="panel wide proposal-panel"><h2>Rozbor hospodárenia</h2><p class="proposal-note">Číselné hodnoty sa načítavajú z nahratých tabuliek. Vzorová tabuľka slúži iba na prevzatie členenia, nie na čerpanie hodnôt. Položky, ktoré nahraté exporty nerozlišujú, sú označené ako nedostupné.</p><div class="table-wrap"><table class="comparison-table"><thead id="finance-analysis-head"></thead><tbody id="finance-analysis-body"></tbody></table></div><p class="hint">Predaj a priame náklady vychádzajú z Položiek tovaru, doprava z Účtovaných predajných dodávok a účtovné výsledky z Vecných položiek. Nahratý export hlavnej knihy neobsahuje dimenzie ku konkrétnym nákladovým riadkom, preto nie je možné spoľahlivo oddeliť enviro náklady, mzdy, marketing ani réžiu. Tieto položky nie sú vykázané ako nula. Doprava sa neodpočítava druhýkrát od účtovného výsledku.</p></article>
 <article class="panel"><h2>Top dodávatelia</h2><ol class="list" id="suppliers"></ol></article>
 <article class="panel"><h2>Tržby podľa zákazníka</h2><ol class="list" id="customers"></ol><p class="hint">Tržba z rovnakého exportu Položky tovaru, ktorý sa používa aj v tabuľke ziskovosti.</p></article>
@@ -58,20 +67,21 @@ const escapeHtml=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;'
 const monthNames=['Január','Február','Marec','Apríl','Máj','Jún','Júl','August','September','Október','November','December'];
 const sourceCategories={
  items:{title:'Položky tovaru',prefix:'Položky tovaru'},
- ledger:{title:'Vecné položky / hlavná kniha',prefix:'Vecné položky'},
+ ledger:{title:'Vecné položky',prefix:'Vecné položky'},
  suppliers:{title:'Položky dodávateľa',prefix:'Položky dodávateľa'},
  customers:{title:'Položky zákazníka',prefix:'Položky zákazníka'},
  deliveries:{title:'Účtované predajné dodávky',prefix:'Účtované predajné dodávky'},
  'customer-directory':{title:'Zoznam zákazníkov',prefix:'Zoznam zákazníkov'},
- dimensions:{title:'Dimenzie nákladov',prefix:'Dimenzie'}
+ dimensions:{title:'Dimenzie nákladov',prefix:'Dimenzie'},
+ 'account-map':{title:'Hlavná kniha',prefix:'Hlavná kniha'}
 };
 const reportSections={
  overview:{title:'Hlavný prehľad',sources:[]},
  annual:{title:'Výsledky podľa rokov',headings:['Výsledky podľa rokov','Porovnanie mesiacov'],sources:['items']},
- 'account-costs':{title:'Náklady podľa účtovej triedy',heading:'Náklady podľa účtovej triedy',sources:['ledger','dimensions']},
- 'expense-breakdown':{title:'Rozpis nákladov podľa mesiacov',heading:'Vývoj celkových nákladov',sources:['ledger','dimensions']},
- 'monthly-results':{title:'Výsledky hospodárenia podľa mesiacov',heading:'Výsledky hospodárenia podľa mesiacov',sources:['items','ledger','deliveries']},
- proposal:{title:'Rozbor hospodárenia',heading:'Rozbor hospodárenia',sources:['items','ledger','deliveries','dimensions']},
+ 'account-costs':{title:'Náklady podľa účtovej triedy',heading:'Náklady podľa účtovej triedy',sources:['ledger','dimensions','account-map']},
+ 'expense-breakdown':{title:'Rozpis nákladov podľa mesiacov',heading:'Vývoj celkových nákladov',sources:['ledger','dimensions','account-map']},
+ 'monthly-results':{title:'Výsledky hospodárenia podľa mesiacov',heading:'Výsledky hospodárenia podľa mesiacov',sources:['items','ledger','deliveries','account-map']},
+ proposal:{title:'Rozbor hospodárenia',heading:'Rozbor hospodárenia',sources:['items','ledger','deliveries','dimensions','account-map']},
  suppliers:{title:'Top dodávatelia',heading:'Top dodávatelia',sources:['suppliers']},
  'customer-revenue':{title:'Tržby podľa zákazníka',heading:'Tržby podľa zákazníka',sources:['items','customers','customer-directory']},
  'customer-profit':{title:'Ziskovosť podľa zákazníka',heading:'Ziskovosť podľa zákazníka',sources:['items','customers','customer-directory','deliveries','ledger','dimensions']},

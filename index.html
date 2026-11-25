@@ -14,37 +14,43 @@
 </style>
 </style>
 <style>
-.controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.controls select{border:1px solid var(--line);background:var(--white);padding:9px 12px;border-radius:4px;font:13px ui-sans-serif,system-ui}.compare-month-control{display:flex;align-items:flex-start;gap:12px;flex:1 0 100%;font:13px ui-sans-serif,system-ui}.compare-month-control>span{padding-top:7px}.compare-month-picker{display:flex;flex-wrap:wrap;gap:6px}.compare-month-picker button{border:1px solid var(--line);border-radius:4px;padding:7px 10px;background:var(--white);color:var(--ink);cursor:pointer;font:13px ui-sans-serif,system-ui}.compare-month-picker button:hover{border-color:var(--teal);background:var(--mint)}.compare-month-picker button[aria-pressed="true"]{border-color:var(--teal);background:var(--teal);color:white}.compare-month-picker button:focus-visible{outline:2px solid var(--teal);outline-offset:2px}.comparison-table{width:100%;border-collapse:collapse;font:13px ui-sans-serif,system-ui}.comparison-table th,.comparison-table td{padding:10px 8px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}.comparison-table th:first-child,.comparison-table td:first-child{text-align:left}.comparison-table th{color:var(--muted);font-size:11px;text-transform:uppercase}.delta{font-weight:700}.subtle{color:var(--muted);font-size:12px}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.controls select{border:1px solid var(--line);background:var(--white);padding:9px 12px;border-radius:4px;font:13px ui-sans-serif,system-ui}.compare-month-control{display:flex;align-items:flex-start;gap:12px;flex:1 0 100%;font:13px ui-sans-serif,system-ui}.compare-month-control>span{padding-top:7px}.compare-month-picker{display:flex;flex-wrap:wrap;gap:6px}.compare-month-picker button{border:1px solid var(--line);border-radius:4px;padding:7px 10px;background:var(--white);color:var(--ink);cursor:pointer;font:13px ui-sans-serif,system-ui}.compare-month-picker button:hover{border-color:var(--teal);background:var(--mint)}.compare-month-picker button[aria-pressed="true"]{border-color:var(--teal);background:var(--teal);color:white}.compare-month-picker button:focus-visible{outline:2px solid var(--teal);outline-offset:2px}.comparison-table{width:100%;border-collapse:collapse;font:13px ui-sans-serif,system-ui}.comparison-table th,.comparison-table td{padding:10px 8px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}.comparison-table th:first-child,.comparison-table td:first-child{text-align:left}.comparison-table th{color:var(--muted);font-size:11px;text-transform:uppercase}.delta{font-weight:700}.subtle{color:var(--muted);font-size:12px}.monthly-breakdown-toolbar{display:flex;align-items:end;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:12px}.monthly-breakdown-toolbar h3{margin:0;font:700 22px/1.2 Georgia,serif}.monthly-breakdown-filters{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.monthly-breakdown-filters label{display:flex;align-items:center;gap:7px;color:var(--muted);font:600 12px ui-sans-serif,system-ui}.monthly-breakdown-filters select{border:1px solid var(--line);border-radius:4px;padding:8px 10px;background:var(--white);color:var(--ink);font:13px ui-sans-serif,system-ui}@media(max-width:600px){.monthly-breakdown-toolbar{align-items:flex-start}.monthly-breakdown-filters{width:100%}.monthly-breakdown-filters label{flex:1}.monthly-breakdown-filters select{min-width:0;width:100%}}
 <style>
 .metric-filter{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 16px;padding:10px 0}.metric-filter label,.month-filter label,.year-filter label{font:13px ui-sans-serif,system-ui;color:var(--ink)}.metric-filter input,.month-filter input,.year-filter input{accent-color:var(--teal);margin-right:5px}.month-filter,.year-filter{display:flex;flex-wrap:wrap;gap:9px;margin:8px 0 12px}.month-filter label,.year-filter label{display:block;padding:7px 9px}.legend{display:flex;gap:14px;flex-wrap:wrap;margin:4px 0 10px;font:12px ui-sans-serif,system-ui;color:var(--muted)}.legend i{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:5px;vertical-align:-1px}.chart{padding:0 18px 78px;gap:16px;overflow-x:auto;justify-content:flex-start}.chart .column{flex:0 0 48px}.column span{top:100%;bottom:auto;left:50%;width:72px;transform:translateX(-50%);padding-top:8px;line-height:1.25;font-size:10px}.filter-menu{position:relative;display:inline-block;margin:0 8px 4px 0}.filter-menu summary{cursor:pointer;list-style:none;border:1px solid var(--line);background:var(--white);border-radius:5px;padding:9px 32px 9px 12px;font:600 13px ui-sans-serif,system-ui;position:relative}.filter-menu summary::-webkit-details-marker{display:none}.filter-menu summary:after{content:'▾';position:absolute;right:12px;color:var(--teal)}.filter-menu[open] summary:after{content:'▴'}.filter-menu .year-filter,.filter-menu .month-filter{position:absolute;z-index:3;top:42px;left:0;min-width:180px;max-height:260px;overflow:auto;display:block;margin:0;padding:8px;background:var(--white);border:1px solid var(--line);border-radius:5px;box-shadow:0 8px 24px #18252b20}.filter-menu label{padding:7px 8px;border-radius:3px}.filter-menu label:hover{background:var(--mint)}
 <style>
 .month-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(58px,1fr));gap:12px;align-items:end;min-height:235px}.month-group{min-width:0;height:235px;display:flex;flex-direction:column;justify-content:end;align-items:center}.month-bars{height:170px;width:100%;display:flex;align-items:end;justify-content:center;gap:3px}.month-bars .column{flex:1;min-width:3px;max-width:22px}.month-label{height:48px;text-align:center;color:var(--muted);font:11px/1.25 ui-sans-serif,system-ui;padding-top:8px}.month-label strong{display:block;color:var(--ink);font:600 11px/1.25 ui-sans-serif,system-ui}.chart{display:grid;grid-template-columns:repeat(12,minmax(42px,1fr));gap:10px;min-height:235px;height:auto;overflow-x:auto;padding:0 18px 12px}.chart .month-group{min-width:0}@media(max-width:600px){.month-groups{grid-template-columns:repeat(4,1fr);gap:8px}.month-bars .column{max-width:16px}.month-label strong{font-size:10px}}
-</style><style>.controls input[type="search"]{border:1px solid var(--line);background:var(--white);padding:9px 12px;border-radius:4px;font:13px ui-sans-serif,system-ui;min-width:240px}.customer-profit-controls{align-items:center}.customer-profit-sort{margin-left:auto;display:flex;align-items:center;gap:8px;font:13px ui-sans-serif,system-ui}.delivery-warning{color:#b55748;font-weight:700}</style></head>
-<style>.proposal-note{margin:0 0 18px;padding:13px 15px;border-left:3px solid var(--teal);background:var(--mint);color:var(--ink);font:13px/1.55 ui-sans-serif,system-ui}.proposal-table{width:100%;border-collapse:collapse;font:13px ui-sans-serif,system-ui}.proposal-table th,.proposal-table td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.proposal-table th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.4px}.proposal-table td:last-child{color:var(--muted)}.proposal-table tr:last-child td{border-bottom:0}.proposal-panel h3{margin:18px 0 8px;font:600 15px ui-sans-serif,system-ui}</style></head>
+</style><style>.controls input[type="search"]{border:1px solid var(--line);background:var(--white);padding:9px 12px;border-radius:4px;font:13px ui-sans-serif,system-ui;min-width:240px}.customer-profit-controls{align-items:center}.customer-profit-sort{margin-left:auto;display:flex;align-items:center;gap:8px;font:13px ui-sans-serif,system-ui}.delivery-warning{color:#b55748;font-weight:700}</style>
+<style>.proposal-note{margin:0 0 18px;padding:13px 15px;border-left:3px solid var(--teal);background:var(--mint);color:var(--ink);font:13px/1.55 ui-sans-serif,system-ui}.proposal-table{width:100%;border-collapse:collapse;font:13px ui-sans-serif,system-ui}.proposal-table th,.proposal-table td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.proposal-table th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.4px}.proposal-table td:last-child{color:var(--muted)}.proposal-table tr:last-child td{border-bottom:0}.proposal-panel h3{margin:18px 0 8px;font:600 15px ui-sans-serif,system-ui}.finance-group{background:var(--mint);color:var(--teal)!important;text-align:left!important;font-size:12px!important;letter-spacing:.4px}</style>
+<style>
+.section-tabs{display:flex;gap:4px;overflow-x:auto;margin:20px 0 0;border-bottom:1px solid var(--line)}
+.section-tabs[hidden]{display:none}
+.section-tabs button{flex:0 0 auto;border:0;border-bottom:3px solid transparent;padding:11px 15px;background:transparent;color:var(--muted);cursor:pointer;font:600 13px ui-sans-serif,system-ui}
+.section-tabs button:hover{color:var(--teal);background:#e6efe880}
+.section-tabs button[aria-selected="true"]{border-bottom-color:var(--teal);color:var(--teal)}
+.section-tabs button:focus-visible{outline:2px solid var(--teal);outline-offset:-2px}
+</style></head>
 <body><div class="app-shell">
-<aside class="sidebar"><div class="sidebar-brand"><strong>TMV · hospodárenie</strong><span>Pracovný prehľad</span></div><div><nav class="sidebar-nav" aria-label="Prehľady a analýzy"><span class="sidebar-label">Prehľad</span><button type="button" data-section="overview" class="active">Hlavný prehľad</button><span class="sidebar-label">Hospodárenie</span><button type="button" data-section="annual">Výsledky podľa rokov</button><button type="button" data-section="monthly-results">Výsledky hospodárenia podľa mesiacov</button><button type="button" data-section="proposal">Rozbor hospodárenia · návrh</button><span class="sidebar-label">Náklady</span><button type="button" data-section="account-costs">Náklady podľa účtovej triedy</button><button type="button" data-section="expense-breakdown">Rozpis nákladov podľa mesiacov</button><button type="button" data-section="suppliers">Top dodávatelia</button><span class="sidebar-label">Predaj a zákazníci</span><button type="button" data-section="customer-revenue">Tržby podľa zákazníka</button><button type="button" data-section="customer-profit">Ziskovosť podľa zákazníka</button><button type="button" data-section="product-profit">Ziskovosť podľa produktu / vody</button><button type="button" data-section="delivery-profit">Zisk po doprave podľa zákazníka</button></nav></div></aside>
+<aside class="sidebar"><div class="sidebar-brand"><strong>TMV · hospodárenie</strong><span>Pracovný prehľad</span></div><div><nav class="sidebar-nav" aria-label="Prehľady a analýzy"><span class="sidebar-label">Prehľad</span><button type="button" data-section="overview" class="active">Hlavný prehľad</button><span class="sidebar-label">Hospodárenie</span><button type="button" data-section="annual">Výsledky podľa rokov</button><button type="button" data-section="monthly-results">Výsledky hospodárenia podľa mesiacov</button><button type="button" data-section="proposal">Rozbor hospodárenia</button><span class="sidebar-label">Náklady</span><button type="button" data-section="account-costs">Náklady podľa účtovej triedy</button><button type="button" data-section="expense-breakdown">Rozpis nákladov podľa mesiacov</button><button type="button" data-section="suppliers">Top dodávatelia</button><span class="sidebar-label">Predaj a zákazníci</span><button type="button" data-section="customer-revenue">Tržby podľa zákazníka</button><button type="button" data-section="customer-profit">Ziskovosť podľa zákazníka</button><button type="button" data-section="product-profit">Ziskovosť podľa produktu / vody</button><button type="button" data-section="delivery-profit">Zisk po doprave podľa zákazníka</button></nav></div></aside>
 <div class="main-content"><main>
 <header class="top"><div><div class="kicker">TMV · interný prehľad</div><h1 id="page-title">Hlavný prehľad</h1></div><div class="date" id="updated">Načítavam údaje...</div></header>
-<div id="overview-view" class="page-view">
+<nav id="section-tabs" class="section-tabs" role="tablist" aria-label="Zobrazenie časti" hidden><button type="button" id="report-tab" role="tab" aria-controls="overview-view" aria-selected="true" data-view="report"></button><button type="button" id="tables-tab" role="tab" aria-controls="source-view" aria-selected="false" data-view="tables">Tabuľky</button></nav>
+<div id="overview-view" class="page-view" role="tabpanel" aria-labelledby="report-tab" tabindex="0">
 <div class="top-period-filter"><label for="top-year">Rok</label><select id="top-year"></select><label for="top-month">Mesiac</label><select id="top-month"><option value="all">Celý rok</option></select></div><section class="grid" id="metrics"></section><section class="layout">
 <article class="panel wide"><h2>Výsledky podľa rokov</h2><div class="table-wrap"><table class="comparison-table"><thead><tr><th>Ukazovateľ</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th><th>2026</th><th>Spolu</th></tr></thead><tbody id="annual-table"></tbody></table></div><p class="hint"><strong>Čo tabuľka obsahuje:</strong> Tržby, náklad tovaru, hrubý zisk, množstvo a priemernú cenu za kus. Tržby, množstvo a náklad tovaru sa berú z exportu <em>Položky tovaru</em> a rozdeľujú podľa dátumu zaúčtovania. Rok 2026 zobrazuje dostupné mesiace od januára do októbra.</p></article>
 <article class="panel wide"><h2>Porovnanie mesiacov</h2><div class="controls"><label for="compare-year">Rok</label><select id="compare-year"><option value="2026">2026 oproti 2025</option><option value="2025">2025 oproti 2024</option><option value="2024">2024 oproti 2023</option></select><div class="compare-month-control"><span id="compare-month-label">Mesiac</span><input id="compare-month" type="hidden" value="all"><div id="compare-month-picker" class="compare-month-picker" role="group" aria-labelledby="compare-month-label"></div></div></div><div class="metric-filter"><label><input type="checkbox" value="Tržby" checked onchange="filterMetrics()"> Tržby</label><label><input type="checkbox" value="Náklad tovaru" checked onchange="filterMetrics()"> Náklad tovaru</label><label><input type="checkbox" value="Hrubý zisk" checked onchange="filterMetrics()"> Hrubý zisk</label><label><input type="checkbox" value="Množstvo" checked onchange="filterMetrics()"> Množstvo</label><label><input type="checkbox" value="Priemer €/ks" checked onchange="filterMetrics()"> Priemer €/ks</label></div><div class="table-wrap"><table class="comparison-table"><thead><tr><th>Ukazovateľ</th><th id="current-label">2026</th><th id="previous-label">2025</th><th>Rozdiel</th><th>Zmena</th></tr></thead><tbody id="monthly-table"></tbody></table></div><p class="hint"><strong>Čo tabuľka obsahuje:</strong> Aktuálne obdobie, porovnávaný minulý rok, rozdiel a percentuálnu zmenu. Zdrojom sú <em>Položky tovaru</em>; obdobie sa určuje podľa dátumu zaúčtovania. Výber „Celý rok“ znamená všetky dostupné mesiace daného roka.</p></article>
 <article class="panel"><h2>Náklady podľa účtovej triedy · <span id="current-year-title">aktuálny rok</span></h2><div id="categories"></div><p class="hint">Hlavný prehľad zobrazuje aktuálny rok. Historické roky sú v porovnávacej tabuľke.</p></article>
 <article class="panel wide"><h2>Vývoj celkových nákladov</h2><p class="hint">Všetky náklady z hlavnej knihy, účty 5: materiál, služby, mzdy, doprava, réžia, opravy, odpisy a ďalšie. Vyber roky a mesiace na porovnanie.</p><details class="filter-menu"><summary>Roky</summary><div class="year-filter" id="year-filter"></div></details><details class="filter-menu"><summary>Mesiace</summary><div class="month-filter" id="month-filter"></div></details><select id="chart-year" hidden><option value="all">Všetky roky</option></select><select id="chart-month" hidden><option value="all">Všetky mesiace</option></select><div class="legend" id="chart-legend"></div><div class="chart" id="chart"></div></article>
 <article class="panel wide"><h2>Výsledky hospodárenia podľa mesiacov</h2><div class="table-wrap"><table class="comparison-table"><thead><tr><th>Mesiac</th><th>Tržby · položky tovaru</th><th>Priamy náklad · položky tovaru</th><th>Doprava spárovaných dodávok</th><th>Náklady účtov 5 · vecné položky</th><th>Prevádzkový výsledok · účtovníctvo</th><th>Čistý výsledok · účtovníctvo</th></tr></thead><tbody id="report-months"></tbody></table></div><p class="hint">Údaje sa počítajú z nahratých exportov Položky tovaru, Vecné položky a Účtované predajné dodávky. Októbrový súbor TMV rozbor sa používa len ako vzor a do výpočtov ani zoznamu podkladov sa nezahŕňa. Doprava je informatívny súčet spárovaných dodávok a je už zahrnutá v účtovných nákladoch; nepripočítavajte ju k nim druhýkrát.</p></article>
-<article class="panel wide proposal-panel"><h2>Návrh · hlavné ekonomické ukazovatele</h2><p class="proposal-note">Toto je iba návrh štruktúry podľa názvov ukazovateľov vo vzorovom rozbore. Číselné hodnoty zo vzoru sa nepoužili. Hodnoty a finálne priradenie zdrojov doplníme a overíme z našich tabuliek.</p><div class="table-wrap"><table class="proposal-table"><thead><tr><th>Ukazovateľ</th><th>Jednotka</th><th>Zdroj / ďalší krok</th></tr></thead><tbody><tr><td>Predané množstvo</td><td>ks</td><td>Položky tovaru · potvrdiť rozsah</td></tr><tr><td>Tržby</td><td>€</td><td>Položky tovaru · potvrdiť rozsah</td></tr><tr><td>Tržba na kus</td><td>€/ks</td><td>Vypočítať z našich tržieb a množstva</td></tr><tr><td>Priame náklady</td><td>€</td><td>Položky tovaru / účtovné položky · overiť</td></tr><tr><td>Doprava</td><td>€</td><td>Účtované predajné dodávky · spárovať s účtovaním</td></tr><tr><td>Enviro náklady</td><td>€</td><td>Účet alebo dimenziu nákladov ešte potvrdiť</td></tr><tr><td>HM1, HM2 a HM3</td><td>€ · % · €/ks</td><td>Definície a výpočet ešte potvrdiť</td></tr></tbody></table></div></article>
-<article class="panel wide proposal-panel"><h2>Návrh · náklady a výsledok</h2><div class="table-wrap"><table class="proposal-table"><thead><tr><th>Ukazovateľ</th><th>Jednotka</th><th>Zdroj / ďalší krok</th></tr></thead><tbody><tr><td>Výroba a mzdy vo výrobe</td><td>€</td><td>Naše účtovné tabuľky · rozčleniť po účtoch/dimenziách</td></tr><tr><td>Trade marketing a consumer marketing</td><td>€</td><td>Naše účtovné tabuľky · rozčleniť po dimenziách</td></tr><tr><td>Administratívne mzdy</td><td>€</td><td>Naše účtovné tabuľky · mapovanie potvrdiť</td></tr><tr><td>Opravy, réžia a skladovanie</td><td>€</td><td>Naše účtovné tabuľky · mapovanie potvrdiť</td></tr><tr><td>Spolu režijné náklady</td><td>€</td><td>Výpočet po potvrdení kategórií</td></tr><tr><td>Prevádzkový zisk / strata</td><td>€ · % · €/ks</td><td>Výpočet z našich výnosov a nákladov</td></tr><tr><td>Odpisy, úroky a dotácie</td><td>€</td><td>Naše účtovné tabuľky · potvrdiť účty</td></tr><tr><td>Čistý zisk / strata</td><td>€ · % · €/ks</td><td>Výpočet po odsúhlasení metodiky</td></tr><tr><td>Paletová rezerva</td><td>€</td><td>Zdroj a metodiku doplníme</td></tr></tbody></table></div></article>
-<article class="panel wide proposal-panel"><h2>Návrh · plán, porovnania a predaj</h2><div class="table-wrap"><table class="proposal-table"><thead><tr><th>Prehľad</th><th>Navrhované členenie</th><th>Zdroj / ďalší krok</th></tr></thead><tbody><tr><td>Plán vs. skutočnosť</td><td>Skutočnosť · plán · rozdiel · % plnenia</td><td>Plánovú tabuľku a obdobie doplníme</td></tr><tr><td>Medziročné porovnanie</td><td>Rovnaké obdobie · rozdiel · % zmena</td><td>Naše tabuľky · zosúladiť obdobia</td></tr><tr><td>Forecast</td><td>Odhad do konca roka · aktualizácia</td><td>Zdroj forecastu doplníme</td></tr><tr><td>Predaj produktov</td><td>Množstvo · tržby · marža</td><td>Položky tovaru · pravidlá marže potvrdiť</td></tr><tr><td>Predaj zákazníkov</td><td>Množstvo · tržby · ziskovosť</td><td>Položky zákazníka / tovaru · overiť párovanie</td></tr></tbody></table></div></article>
-<article class="panel wide proposal-panel"><h2>Návrh · pracovný kapitál a cashflow</h2><div class="table-wrap"><table class="proposal-table"><thead><tr><th>Ukazovateľ</th><th>Jednotka</th><th>Zdroj / ďalší krok</th></tr></thead><tbody><tr><td>Pohľadávky a doba inkasa</td><td>€ · dni</td><td>Samostatný zdroj bude treba potvrdiť</td></tr><tr><td>Zásoby a doba obratu</td><td>€ · dni</td><td>Samostatný zdroj bude treba potvrdiť</td></tr><tr><td>Krátkodobé záväzky a doba úhrady</td><td>€ · dni</td><td>Samostatný zdroj bude treba potvrdiť</td></tr><tr><td>Pracovný kapitál a doba obratu</td><td>€ · dni</td><td>Výpočet po doplnení súvahových údajov</td></tr><tr><td>Peniaze a bankové účty</td><td>€</td><td>Samostatný zdroj bude treba potvrdiť</td></tr><tr><td>Cashflow</td><td>€</td><td>Zdroj a metodiku doplníme</td></tr></tbody></table></div><p class="hint">Tieto položky zatiaľ nemajú hodnoty. Najprv doplníme vhodné vlastné tabuľky a potvrdíme, či obsahujú potrebné údaje.</p></article>
+<article class="panel wide proposal-panel"><h2>Rozbor hospodárenia</h2><p class="proposal-note">Číselné hodnoty sa načítavajú z nahratých tabuliek. Vzorová tabuľka slúži iba na prevzatie členenia, nie na čerpanie hodnôt. Položky, ktoré nahraté exporty nerozlišujú, sú označené ako nedostupné.</p><div class="table-wrap"><table class="comparison-table"><thead id="finance-analysis-head"></thead><tbody id="finance-analysis-body"></tbody></table></div><p class="hint">Predaj a priame náklady vychádzajú z Položiek tovaru, doprava z Účtovaných predajných dodávok a účtovné výsledky z Vecných položiek. Nahratý export hlavnej knihy neobsahuje dimenzie ku konkrétnym nákladovým riadkom, preto nie je možné spoľahlivo oddeliť enviro náklady, mzdy, marketing ani réžiu. Tieto položky nie sú vykázané ako nula. Doprava sa neodpočítava druhýkrát od účtovného výsledku.</p></article>
 <article class="panel"><h2>Top dodávatelia</h2><ol class="list" id="suppliers"></ol></article>
 <article class="panel"><h2>Tržby podľa zákazníka</h2><ol class="list" id="customers"></ol><p class="hint">Tržba z rovnakého exportu Položky tovaru, ktorý sa používa aj v tabuľke ziskovosti.</p></article>
-<article class="panel wide"><h2>Ziskovosť podľa zákazníka · <span id="customer-profit-period"></span></h2><div class="controls customer-profit-controls"><details class="filter-menu"><summary>Roky</summary><div class="year-filter" id="customer-year-filter"></div></details><details class="filter-menu"><summary>Mesiace</summary><div class="month-filter" id="customer-month-filter"></div></details><input id="customer-profit-search" type="search" placeholder="Hľadať zákazníka alebo kód" aria-label="Hľadať zákazníka podľa názvu alebo kódu"><label class="customer-profit-sort">Zoradiť čistý zisk<select id="customer-profit-sort"><option value="desc">Najvyšší zisk navrchu</option><option value="asc">Najnižší zisk navrchu</option></select></label></div><div class="table-wrap"><table class="profit-table"><thead><tr><th>Zákazník</th><th>Tržba</th><th>Priamy náklad</th><th>Hrubý zisk</th><th>Doprava dodávok</th><th>Spoločné náklady</th><th>Čistý zisk (odhad)</th><th>Marža</th><th>Množstvo</th><th>Priemer €/ks</th></tr></thead><tbody id="profit-table"></tbody></table></div><p class="hint">Čistý zisk = tržby − priame náklady − doprava − spoločné náklady. Spoločné náklady sa rozdeľujú pomerne podľa tržieb; preto je zákaznícky čistý zisk odhad. Roky a mesiace možno vyberať nezávisle; zobrazia sa iba dostupné obdobia.</p></article>
+<article class="panel wide"><h2>Ziskovosť podľa zákazníka · <span id="customer-profit-period"></span></h2><div class="controls customer-profit-controls"><details class="filter-menu"><summary>Roky</summary><div class="year-filter" id="customer-year-filter"></div></details><details class="filter-menu"><summary>Mesiace</summary><div class="month-filter" id="customer-month-filter"></div></details><input id="customer-profit-search" type="search" placeholder="Hľadať zákazníka alebo kód" aria-label="Hľadať zákazníka podľa názvu alebo kódu"><label class="customer-profit-sort">Zoradiť čistý zisk<select id="customer-profit-sort"><option value="desc">Najvyšší zisk navrchu</option><option value="asc">Najnižší zisk navrchu</option></select></label></div><div class="table-wrap"><table class="profit-table"><thead><tr><th>Zákazník</th><th>Tržba</th><th>Priamy náklad</th><th>Hrubý zisk</th><th>Doprava dodávok</th><th>Spoločné náklady</th><th>Čistý zisk (odhad)</th><th>Marža</th><th>Množstvo</th><th>Priemer €/ks</th></tr></thead><tbody id="profit-table"></tbody></table></div><p class="hint">Tržby, priame náklady a množstvo sa počítajú z Položiek tovaru; doprava z Účtovaných predajných dodávok a spoločné náklady z účtovníctva. Položky zákazníka dopĺňajú iba názvy zákazníkov, nie sumy v tejto tabuľke; ich odstránenie preto nemení číselné hodnoty, iba prípadne zobrazený názov. Čistý zisk = tržby − priame náklady − doprava − spoločné náklady; spoločné náklady sa rozdeľujú pomerne podľa tržieb, preto je čistý zisk odhad. Roky a mesiace možno vyberať nezávisle.</p></article>
 <article class="panel wide"><h2>Ziskovosť podľa produktu / typu vody · <span id="product-profit-period"></span></h2><div class="controls customer-profit-controls"><details class="filter-menu"><summary>Roky</summary><div class="year-filter" id="product-year-filter"></div></details><details class="filter-menu"><summary>Mesiace</summary><div class="month-filter" id="product-month-filter"></div></details><input id="product-profit-search" type="search" placeholder="Hľadať názov alebo kód produktu" aria-label="Hľadať produkt podľa názvu alebo kódu"><label class="customer-profit-sort">Zoradiť čistý zisk (odhad)<select id="product-profit-sort"><option value="desc">Najvyšší zisk navrchu</option><option value="asc">Najnižší zisk navrchu</option></select></label></div><div class="table-wrap"><table class="profit-table"><thead><tr><th>Produkt / voda</th><th>Tržba</th><th>Priamy náklad</th><th>Hrubý zisk</th><th>Doprava dodávok</th><th>Zisk po doprave</th><th>Spoločné náklady (odhad)</th><th>Čistý zisk (odhad)</th><th>Marža (odhad)</th><th>Množstvo</th><th>Priemer €/ks</th></tr></thead><tbody id="product-profit-table"></tbody></table></div><p class="hint">Každý kód tovaru je samostatný riadok. Ak má Tesco voda v predajnom exporte nulový náklad, priradí sa jej náklad etikety podľa skutočných výdajov na výrobné dávky (posledná dostupná jednotková cena etikety). V tabuľke sa tento náklad presúva zo spoločných nákladov na konkrétny produkt; celkový účtovný výsledok sa nemení. Pri Terke sa etiketa nepripočítava druhýkrát, pretože jej náklad je už zahrnutý v skutočnom náklade hotového výrobku. Zisk po doprave = tržba − priamy náklad − doprava.</p></article>
 <article class="panel wide"><h2>Zisk po doprave podľa zákazníka</h2><div class="controls"><input id="delivery-search" type="search" placeholder="Hľadať zákazníka alebo dodávku"><span class="hint" id="delivery-summary"></span></div><div class="table-wrap"><table class="comparison-table"><thead><tr><th>Zákazník</th><th>Počet dodávok</th><th>Tržba</th><th>Priamy náklad</th><th>Hrubý zisk</th><th>Doprava</th><th>Zisk po doprave</th><th>Marža</th></tr></thead><tbody id="delivery-customer-table"></tbody></table></div><p class="hint">Každý zákazník je uvedený raz. Sumy sú súčtom spárovaných dodávok: tržba − priamy náklad tovaru − cena dopravy. Tento prehľad neodpočítava všetky spoločné náklady; tie sú v tabuľke ziskovosti podľa zákazníka vyššie.</p><details class="delivery-details"><summary id="delivery-details-summary">Detail dodávok</summary><div class="table-wrap"><table class="comparison-table"><thead><tr><th>Číslo dodávky</th><th>Zákazník</th><th>Tržba</th><th>Priamy náklad</th><th>Hrubý zisk</th><th>Doprava</th><th>Zisk po doprave</th><th>Párovanie</th></tr></thead><tbody id="delivery-table"></tbody></table></div></details><p class="hint">Dodávky bez predajných položiek alebo s rozdielnym zákazníkom nie sú zahrnuté do súhrnu zisku.</p></article>
 </section>
 <div id="files" hidden></div>
 </div>
-<section id="source-view" class="source-view" hidden><div class="source-intro"><h2 id="source-title"></h2><p id="source-description"></p></div><div class="source-toolbar"><div class="source-upload"><label for="source-picker">Pridať novšiu alebo staršiu tabuľku<input id="source-picker" type="file" accept=".xlsx" multiple></label><label id="source-category-label" class="source-category-choice">Typ tabuľky<select id="source-category"></select></label><span class="hint">Súbor sa uloží do zodpovedajúcej kategórie. Môžete vybrať viacero Excel súborov naraz.</span></div><button id="recalculate-button" class="source-recalculate source-action" type="button">Prepočítať údaje</button></div><p id="source-status" class="upload-status" role="status" aria-live="polite"></p><div id="source-files" class="source-files"></div></section>
+<section id="source-view" class="source-view" role="tabpanel" aria-labelledby="tables-tab" tabindex="0" hidden><div class="source-intro"><h2 id="source-title"></h2><p id="source-description"></p></div><div class="source-toolbar"><div class="source-upload"><label for="source-picker">Pridať novšiu alebo staršiu tabuľku<input id="source-picker" type="file" accept=".xlsx" multiple></label><label id="source-category-label" class="source-category-choice">Typ tabuľky<select id="source-category"></select></label><span class="hint">Súbor sa uloží do zodpovedajúcej kategórie. Môžete vybrať viacero Excel súborov naraz.</span></div><button id="recalculate-button" class="source-recalculate source-action" type="button">Prepočítať údaje</button></div><p id="source-status" class="upload-status" role="status" aria-live="polite"></p><div id="source-files" class="source-files"></div></section>
 </main></div></div><script>
 const eur=value=>new Intl.NumberFormat('sk-SK',{maximumFractionDigits:0}).format(value)+' €';
 const eurExact=value=>new Intl.NumberFormat('sk-SK',{minimumFractionDigits:2,maximumFractionDigits:2}).format(value)+' €';
@@ -65,7 +71,7 @@ const reportSections={
  'account-costs':{title:'Náklady podľa účtovej triedy',heading:'Náklady podľa účtovej triedy',sources:['ledger','dimensions']},
  'expense-breakdown':{title:'Rozpis nákladov podľa mesiacov',heading:'Vývoj celkových nákladov',sources:['ledger','dimensions']},
  'monthly-results':{title:'Výsledky hospodárenia podľa mesiacov',heading:'Výsledky hospodárenia podľa mesiacov',sources:['items','ledger','deliveries']},
- proposal:{title:'Rozbor hospodárenia · návrh',headings:['Návrh · hlavné ekonomické ukazovatele','Návrh · náklady a výsledok','Návrh · plán, porovnania a predaj','Návrh · pracovný kapitál a cashflow'],sources:['items','ledger','suppliers','customers','deliveries','customer-directory','dimensions']},
+ proposal:{title:'Rozbor hospodárenia',heading:'Rozbor hospodárenia',sources:['items','ledger','deliveries','dimensions']},
  suppliers:{title:'Top dodávatelia',heading:'Top dodávatelia',sources:['suppliers']},
  'customer-revenue':{title:'Tržby podľa zákazníka',heading:'Tržby podľa zákazníka',sources:['items','customers','customer-directory']},
  'customer-profit':{title:'Ziskovosť podľa zákazníka',heading:'Ziskovosť podľa zákazníka',sources:['items','customers','customer-directory','deliveries','ledger','dimensions']},
@@ -73,6 +79,9 @@ const reportSections={
  'delivery-profit':{title:'Zisk po doprave podľa zákazníka',heading:'Zisk po doprave podľa zákazníka',sources:['items','deliveries']}
 };
 let activeSection=sessionStorage.getItem('tmv-active-section')||'overview';
+if(!reportSections[activeSection])activeSection='overview';
+let activeView=sessionStorage.getItem('tmv-active-view')||'report';
+if(!['report','tables'].includes(activeView))activeView='report';
 let loadedData=null;
 function filePeriodLabel(file){
  const start=file.period_start,end=file.period_end;
@@ -93,31 +102,44 @@ function renderSourceFiles(data,section){
    return `<section class="source-group"><h3>${category.title}</h3>${rows}</section>`;
  }).join('');
 }
-function activateSection(section){
- activeSection=reportSections[section]?section:'overview';
- sessionStorage.setItem('tmv-active-section',activeSection);
+function renderActiveView(){
  const isOverview=activeSection==='overview',definition=reportSections[activeSection];
- document.getElementById('overview-view').hidden=false;
+ document.getElementById('overview-view').hidden=!isOverview&&activeView==='tables';
+ document.getElementById('section-tabs').hidden=isOverview;
+ document.getElementById('report-tab').textContent=definition.title;
+ document.querySelectorAll('#section-tabs [role="tab"]').forEach(tab=>tab.setAttribute('aria-selected',String(tab.dataset.view===activeView)));
  document.querySelector('.top-period-filter').hidden=!isOverview;
  document.getElementById('metrics').hidden=!isOverview;
- const layout=document.querySelector('.layout');layout.hidden=isOverview;layout.style.gridTemplateColumns=isOverview?'':'minmax(0,1fr)';
+ const layout=document.querySelector('.layout');layout.hidden=isOverview||activeView==='tables';layout.style.gridTemplateColumns=isOverview?'':'minmax(0,1fr)';
  document.querySelectorAll('.layout > .panel').forEach(panel=>{
    const heading=panel.querySelector('h2')?.textContent.trim()||'';
    panel.hidden=isOverview||!(definition.headings||[definition.heading]).some(prefix=>prefix&&heading.startsWith(prefix));
  });
- document.getElementById('source-view').hidden=isOverview;
+ document.getElementById('source-view').hidden=isOverview||activeView!=='tables';
  document.getElementById('page-title').textContent=definition.title;
  document.querySelectorAll('.sidebar-nav button').forEach(button=>button.classList.toggle('active',button.dataset.section===activeSection));
  if(!isOverview){
-   document.getElementById('source-title').textContent=`Podklady pre prehľad: ${definition.title}`;
-   document.getElementById('source-description').textContent=activeSection==='proposal'?'Návrh zatiaľ nepočíta hodnoty. Vzorový rozbor sa nepoužíva; nižšie sú naše zdrojové tabuľky na neskoršie priradenie.':'Tu sú nahraté tabuľky, z ktorých tento prehľad čerpá. Vyberte typ tabuľky pri pridávaní nového súboru.';
+   document.getElementById('source-title').textContent=`Tabuľky pre: ${definition.title}`;
+   document.getElementById('source-description').textContent=activeSection==='proposal'?'Rozbor používa iba hodnoty z nahratých zdrojových tabuliek; vzorová tabuľka určuje len členenie.':'Tu sú nahraté tabuľky, z ktorých tento prehľad čerpá. Vyberte typ tabuľky pri pridávaní nového súboru.';
    const categorySelect=document.getElementById('source-category');
    categorySelect.innerHTML=definition.sources.map(key=>`<option value="${key}">${sourceCategories[key].title}</option>`).join('');
    categorySelect.hidden=definition.sources.length<2;
    document.getElementById('source-picker').dataset.category=definition.sources[0];
    document.getElementById('source-status').textContent='';
-  renderSourceFiles(loadedData,activeSection);
+   renderSourceFiles(loadedData,activeSection);
  }
+}
+function activateSection(section){
+ activeSection=reportSections[section]?section:'overview';
+ activeView='report';
+ sessionStorage.setItem('tmv-active-section',activeSection);
+ sessionStorage.setItem('tmv-active-view',activeView);
+ renderActiveView();
+}
+function activateSectionView(view){
+ activeView=view==='tables'?'tables':'report';
+ sessionStorage.setItem('tmv-active-view',activeView);
+ renderActiveView();
 }
 const renderList=(id,values)=>document.getElementById(id).innerHTML=Object.entries(values).sort((a,b)=>b[1]-a[1]).slice(0,6).map(([name,value])=>`<li><span>${name}</span><span>${eur(value)}</span></li>`).join('')||'<li>Bez údajov</li>';
 const metricRows=[['Tržby','revenue',eur],['Náklad tovaru','cost',eur],['Hrubý zisk','profit',eur],['Množstvo','quantity',v=>v.toLocaleString('sk-SK')+' ks'],['Priemer €/ks','unit_price',v=>v.toFixed(2)+' €']];
@@ -155,6 +177,65 @@ function renderComparisons(data){
  yearSelect.onchange=updateMonths;monthSelect.onchange=updateMonthly;updateMonths();
 }
 function renderFinancialReport(data){const body=document.getElementById('report-months');if(!body)return;const entries=Object.entries(data.report_months||{}).sort(([a],[b])=>a.localeCompare(b));body.innerHTML=entries.map(([period,value])=>`<tr><td>${monthNames[Number(period.slice(5))-1]} ${period.slice(0,4)}</td><td>${eur(value.revenue)}</td><td>${eur(value.direct_cost)}</td><td>${eur(value.transport)}</td><td>${eur(value.accounting_cost)}</td><td class="${value.operating_profit>=0?'positive':'negative'}">${eur(value.operating_profit)}</td><td class="${value.net_profit>=0?'positive':'negative'}">${eur(value.net_profit)}</td></tr>`).join('')||'<tr><td colspan="7">Prehľad sa nedá zobraziť bez nahratých zdrojových exportov.</td></tr>'}
+function renderFinancialAnalysis(data){
+ const head=document.getElementById('finance-analysis-head'),body=document.getElementById('finance-analysis-body');
+ if(!head||!body)return;
+ const periods=[...new Set([...Object.keys(data.periods||{}),...Object.keys(data.report_months||{})])]
+  .filter(period=>period.startsWith(`${data.current_year}-`)).sort();
+ const columns=[...periods.map(period=>({period})),{period:'total',label:'Spolu'}];
+ const periodData=period=>period==='total'
+  ?periods.reduce((sum,key)=>{const sales=data.periods?.[key]||{},accounts=data.report_months?.[key]||{};for(const field of ['revenue','cost','quantity'])sum[field]+=(sales[field]||0);for(const field of ['transport','operating_profit','depreciation','interest','subsidies','net_profit'])sum[field]+=(accounts[field]||0);sum.sales_available=sum.sales_available||Boolean(accounts.sales_available);sum.accounting_available=sum.accounting_available||Boolean(accounts.accounting_available);return sum},{revenue:0,cost:0,quantity:0,transport:0,operating_profit:0,depreciation:0,interest:0,subsidies:0,net_profit:0,sales_available:false,accounting_available:false})
+  :{...(data.periods?.[period]||{}),...(data.report_months?.[period]||{})};
+ const unavailable='<span class="subtle">Nedostupné</span>';
+ const formatMoney=value=>eur(value||0),formatQuantity=value=>`${(value||0).toLocaleString('sk-SK')} ks`;
+ const rows=[
+  {group:'Hlavné ekonomické ukazovatele'},
+  {label:'Predaj',unit:'ks',value:p=>p.sales_available?formatQuantity(p.quantity):unavailable},
+  {label:'Tržby',unit:'€',value:p=>p.sales_available?formatMoney(p.revenue):unavailable},
+  {label:'Tržba na kus',unit:'€/ks',value:p=>p.sales_available&&p.quantity?eurExact(p.revenue/p.quantity):'—'},
+  {label:'Priame náklady',unit:'€',value:p=>p.sales_available?formatMoney(p.cost):unavailable},
+  {label:'Doprava',unit:'€',value:p=>p.sales_available?formatMoney(p.transport):unavailable},
+  {label:'Enviro náklady',unit:'€',value:()=>unavailable},
+  {label:'HM1',unit:'€',value:()=>unavailable},
+  {label:'HM1',unit:'%',value:()=>unavailable},
+  {label:'HM1',unit:'€/ks',value:()=>unavailable},
+  {group:'Náklady a výsledok'},
+  {label:'Mzdy výroba - zmeny',unit:'€',value:()=>unavailable},
+  {label:'HM2',unit:'€',value:()=>unavailable},
+  {label:'HM2',unit:'%',value:()=>unavailable},
+  {label:'HM2',unit:'€/ks',value:()=>unavailable},
+  {label:'Trade marketing',unit:'€',value:()=>unavailable},
+  {label:'Consumer marketing',unit:'€',value:()=>unavailable},
+  {label:'HM3',unit:'€',value:()=>unavailable},
+  {label:'HM3',unit:'%',value:()=>unavailable},
+  {label:'HM3',unit:'€/ks',value:()=>unavailable},
+  {label:'Mzdy admin',unit:'€',value:()=>unavailable},
+  {label:'Opravy',unit:'€',value:()=>unavailable},
+  {label:'Réžia',unit:'€',value:()=>unavailable},
+  {label:'Skladovanie',unit:'€',value:()=>unavailable},
+  {label:'Spolu rež. náklady',unit:'€',value:()=>unavailable},
+  {label:'Prevádzkový zisk / strata',unit:'€',value:p=>p.accounting_available?formatMoney(p.operating_profit):unavailable},
+  {label:'Prevádzkový zisk / strata',unit:'%',value:p=>p.accounting_available&&p.sales_available&&p.revenue?`${(p.operating_profit/p.revenue*100).toFixed(1)} %`:unavailable},
+  {label:'Prevádzkový zisk / strata',unit:'€/ks',value:p=>p.accounting_available&&p.sales_available&&p.quantity?eurExact(p.operating_profit/p.quantity):unavailable},
+  {label:'Odpisy',unit:'€',value:p=>p.accounting_available?formatMoney(p.depreciation):unavailable},
+  {label:'Úroky',unit:'€',value:p=>p.accounting_available?formatMoney(p.interest):unavailable},
+  {label:'Dotácie',unit:'€',value:p=>p.accounting_available?formatMoney(p.subsidies):unavailable},
+  {label:'Zisk / strata',unit:'€',value:p=>p.accounting_available?formatMoney(p.net_profit):unavailable},
+  {label:'Zisk / strata',unit:'%',value:p=>p.accounting_available&&p.sales_available&&p.revenue?`${(p.net_profit/p.revenue*100).toFixed(1)} %`:unavailable},
+  {label:'Zisk / strata',unit:'€/ks',value:p=>p.accounting_available&&p.sales_available&&p.quantity?eurExact(p.net_profit/p.quantity):unavailable},
+  {label:'Paletová rezerva',unit:'€',value:()=>unavailable},
+  {group:'Na 1 kus'},
+  {label:'Priame náklady',unit:'€/ks',value:p=>p.sales_available&&p.quantity?eurExact(p.cost/p.quantity):'—'},
+  {label:'Doprava',unit:'€/ks',value:p=>p.sales_available&&p.quantity?eurExact(p.transport/p.quantity):'—'},
+  {label:'Enviro náklady',unit:'€/ks',value:()=>unavailable},
+  {label:'Spolu rež. náklady',unit:'€/ks',value:()=>unavailable}
+ ];
+ head.innerHTML=`<tr><th>Ukazovateľ</th><th>Jednotka</th>${columns.map(column=>`<th>${column.label||monthNames[Number(column.period.slice(5))-1]}</th>`).join('')}</tr>`;
+ body.innerHTML=rows.map(row=>row.group
+  ?`<tr><th class="finance-group" colspan="${columns.length+2}">${row.group}</th></tr>`
+  :`<tr><td>${row.label}</td><td>${row.unit}</td>${columns.map(column=>`<td>${row.value(periodData(column.period))}</td>`).join('')}</tr>`
+ ).join('')||`<tr><td colspan="${columns.length+2}">Pre zvolené obdobie nie sú dostupné zdrojové údaje.</td></tr>`;
+}
 function renderProfit(data){
 const yearBox=document.getElementById('customer-year-filter'),monthBox=document.getElementById('customer-month-filter'),periodData=data.customer_period_data||{},periods=Object.keys(periodData).sort(),years=[...new Set(periods.map(period=>period.slice(0,4)))],months=[...new Set(periods.map(period=>period.slice(5)))].sort(),initialYear=years.includes(data.current_year)?data.current_year:years.at(-1);
 yearBox.innerHTML=years.map(year=>`<label><input type="checkbox" value="${year}" ${year===initialYear?'checked':''}> ${year}</label>`).join('');
@@ -172,7 +253,7 @@ customerBody.innerHTML=[...grouped.values()].sort((a,b)=>b.profit-a.profit).map(
 body.innerHTML=rows.map(row=>{const search=[row.number,row.customer,row.customer_name,row.item_customer].join(' ').toLocaleLowerCase();return `<tr data-search="${escapeHtml(search)}"><td>${escapeHtml(row.number)}</td><td>${escapeHtml(row.customer_name)}<br><small>${escapeHtml(row.customer)}</small>${row.customer_matches?'':`<br><small class="delivery-warning">Zákazník v položkách: ${escapeHtml(row.item_customer||'viac zákazníkov')}</small>`}</td><td>${eurExact(row.revenue)}</td><td>${eurExact(row.direct_cost)}</td><td>${eurExact(row.gross_profit)}</td><td>${eurExact(row.transport)}</td><td class="${row.profit_after_transport===null?'':row.profit_after_transport>=0?'positive':'negative'}">${row.profit_after_transport===null?'—':eurExact(row.profit_after_transport)}</td><td>${row.customer_matches?'Spárované':'Overiť zákazníka'}</td></tr>`}).join('')||'<tr><td colspan="8">Nie sú dostupné spárované dodávky.</td></tr>';
 filter.oninput=()=>{const query=filter.value.trim().toLocaleLowerCase();[customerBody,body].forEach(table=>table.querySelectorAll('tr[data-search]').forEach(row=>{row.hidden=!row.dataset.search.includes(query)}))}
 }
-function render(data){renderComparisons(data);renderFinancialReport(data);document.getElementById('updated').textContent=`Aktualizované ${data.updated}`;const monthCount=Object.keys(data.months).length;
+function render(data){renderComparisons(data);renderFinancialReport(data);renderFinancialAnalysis(data);document.getElementById('updated').textContent=`Aktualizované ${data.updated}`;const monthCount=Object.keys(data.months).length;
 document.getElementById('current-year-title').textContent=data.current_year;document.getElementById('metrics').innerHTML=`<div class="metric"><small>Tržby · ${data.current_year}</small><strong>${eur(data.current_year_revenue)}</strong></div><div class="metric"><small>Náklady · účty 5 · ${data.current_year}</small><strong>${eur(data.current_year_cost)}</strong></div><div class="metric"><small>Výsledok po nákladoch · ${data.current_year}</small><strong class="${data.current_year_profit>=0?'positive':'negative'}">${eur(data.current_year_profit)}</strong></div><div class="metric"><small>Detailné položky</small><strong>${data.files.reduce((s,f)=>s+f.rows,0).toLocaleString('sk-SK')}</strong></div><div class="metric"><small>Obdobia v dátach</small><strong>${monthCount}</strong></div>`;
 const cats=Object.entries(data.current_categories||{}).sort((a,b)=>b[1]-a[1]).slice(0,9),max=cats[0]?.[1]||1;document.getElementById('categories').innerHTML=cats.map(([name,value])=>`<div class="bar"><span>${name}</span><div class="track"><div class="fill" style="width:${value/max*100}%"></div></div><span class="amount">${eur(value)}</span></div>`).join('')||'Bez údajov';
 const months=Object.entries(data.months).sort(),highest=Math.max(...months.map(x=>x[1]),1);document.getElementById('chart').innerHTML=months.map(([month,value])=>`<div class="column" style="height:${Math.max(value/highest*100,8)}%"><span>${monthNames[Number(month.slice(5))-1]||month}<br>${eur(value)}</span></div>`).join('')||'<span class="hint">Po načítaní podkladov sa zobrazí trend.</span>';renderList('suppliers',data.suppliers);const groupedRevenue={};Object.entries(data.customer_revenue||{}).forEach(([id,value])=>{const code=/^\d+$/.test(id)?id.slice(0,5):id;groupedRevenue[code]=(groupedRevenue[code]||0)+value});const namedCustomers=Object.fromEntries(Object.entries(groupedRevenue).map(([id,value])=>[data.customer_names?.[id]||`Zákazník ${id}`,value]));renderList('customers',namedCustomers);renderProfit(data);renderDeliveries(data);document.getElementById('files').innerHTML=data.files.map(f=>`<span class="file">${f.name} · ${f.rows.toLocaleString('sk-SK')} riadkov</span>`).join('')||'Bez Excel podkladov';}
@@ -220,11 +301,11 @@ const render=()=>{
 };
 yearBox.onchange=render;monthBox.onchange=render;searchBox.oninput=render;sortBox.onchange=render;render();
 }
-function renderCostChart(data){const yearSelect=document.getElementById('chart-year'),monthSelect=document.getElementById('chart-month');const years=[...new Set(Object.keys(data.periods||{}).map(key=>key.slice(0,4)))].sort();yearSelect.innerHTML='<option value="all">Všetky roky</option>'+years.map(year=>`<option value="${year}">${year}</option>`).join('');const update=()=>{const year=yearSelect.value,selectedMonth=monthSelect.value,periods=Object.entries(data.periods||{}).filter(([key])=>(year==='all'||key.startsWith(year+'-'))&&(selectedMonth==='all'||key.slice(5)===selectedMonth)).sort(),highest=Math.max(...periods.map(([,value])=>Math.abs(value.cost)),1);document.getElementById('chart').innerHTML=periods.map(([period,value])=>`<div class="column" style="height:${Math.max(Math.abs(value.cost)/highest*100,8)}%"><span>${monthNames[Number(period.slice(5))-1]}<br>${period.slice(0,4)}<br>${eur(Math.abs(value.cost))}</span></div>`).join('')||'<span class="hint">Pre zvolený filter nie sú údaje.</span>'};const updateMonths=()=>{const year=yearSelect.value,available=[...new Set(Object.keys(data.periods||{}).filter(key=>year==='all'||key.startsWith(year+'-')).map(key=>key.slice(5)))].sort();monthSelect.innerHTML='<option value="all">Všetky mesiace</option>'+available.map(month=>`<option value="${month}">${monthNames[Number(month)-1]}</option>`).join('');update()};yearSelect.onchange=updateMonths;monthSelect.onchange=update;updateMonths()}
+function renderCostChart(data){const yearSelect=document.getElementById('chart-year'),monthSelect=document.getElementById('chart-month'),months=data.months||{},years=[...new Set(Object.keys(months).map(key=>key.slice(0,4)))].sort();yearSelect.innerHTML='<option value="all">Všetky roky</option>'+years.map(year=>`<option value="${year}">${year}</option>`).join('');const update=()=>{const year=yearSelect.value,selectedMonth=monthSelect.value,periods=Object.entries(months).filter(([key])=>(year==='all'||key.startsWith(year+'-'))&&(selectedMonth==='all'||key.slice(5)===selectedMonth)).sort(),highest=Math.max(...periods.map(([,value])=>Math.abs(value)),1);document.getElementById('chart').innerHTML=periods.map(([period,value])=>`<div class="column" style="height:${Math.max(Math.abs(value)/highest*100,8)}%"><span>${monthNames[Number(period.slice(5))-1]}<br>${period.slice(0,4)}<br>${eur(Math.abs(value))}</span></div>`).join('')||'<span class="hint">Pre zvolený filter nie sú údaje.</span>'};const updateMonths=()=>{const year=yearSelect.value,available=[...new Set(Object.keys(months).filter(key=>year==='all'||key.startsWith(year+'-')).map(key=>key.slice(5)))].sort();monthSelect.innerHTML='<option value="all">Všetky mesiace</option>'+available.map(month=>`<option value="${month}">${monthNames[Number(month)-1]}</option>`).join('');update()};yearSelect.onchange=updateMonths;monthSelect.onchange=update;updateMonths()}
 function filterMetrics(){const selected=[...document.querySelectorAll('.metric-filter input:checked')].map(input=>input.value);for(const tableId of ['annual-table','monthly-table']){document.querySelectorAll(`#${tableId} tr`).forEach(row=>{const label=row.cells[0]?.textContent.trim();row.style.display=selected.includes(label)?'':'none'})}}
-function renderMonthChecks(data){const yearSelect=document.getElementById('chart-year'),container=document.getElementById('month-filter');const draw=()=>{const year=yearSelect.value,periods=Object.keys(data.periods||{}).filter(period=>year==='all'||period.startsWith(year+'-')).sort(),months=[...new Set(periods.map(period=>period.slice(5)))];container.innerHTML=months.map(month=>`<label><input type="checkbox" value="${month}" checked>${monthNames[Number(month)-1]}</label>`).join('');container.querySelectorAll('input').forEach(input=>input.onchange=()=>drawChart());drawChart()};const drawChart=()=>{const year=yearSelect.value,selected=[...container.querySelectorAll('input:checked')].map(input=>input.value),periods=Object.entries(data.periods||{}).filter(([period])=>(year==='all'||period.startsWith(year+'-'))&&(selected.length===0||selected.includes(period.slice(5)))).sort(),highest=Math.max(...periods.map(([,value])=>Math.abs(value.cost)),1);document.getElementById('chart').innerHTML=periods.map(([period,value])=>`<div class="column" style="height:${Math.max(Math.abs(value.cost)/highest*100,8)}%"><span>${monthNames[Number(period.slice(5))-1]}<br>${period.slice(0,4)}<br>${eur(Math.abs(value.cost))}</span></div>`).join('')||'<span class="hint">Zaškrtnite aspoň jeden mesiac.</span>'};yearSelect.onchange=draw;draw()}
-function renderMultiYearChart(data){const years=[...new Set(Object.keys(data.periods||{}).map(period=>period.slice(0,4)))].sort(),yearBox=document.getElementById('year-filter'),monthBox=document.getElementById('month-filter'),colors=['#2f6f9f','#c84b4b','#397f72','#8a5a9a','#b77a28','#52677d'];yearBox.innerHTML=years.map((year,index)=>`<label><input type="checkbox" value="${year}" checked>${year}</label>`).join('');const availableMonths=[...new Set(Object.keys(data.periods||{}).map(period=>period.slice(5)))].sort();monthBox.innerHTML=availableMonths.map(month=>`<label><input type="checkbox" value="${month}" checked>${monthNames[Number(month)-1]}</label>`).join('');document.getElementById('chart-legend').innerHTML=years.map((year,index)=>`<span><i style="background:${colors[index%colors.length]}"></i>${year}</span>`).join('');const draw=()=>{const selectedYears=[...yearBox.querySelectorAll('input:checked')].map(input=>input.value),selectedMonths=[...monthBox.querySelectorAll('input:checked')].map(input=>input.value),periods=Object.entries(data.periods||{}).filter(([period])=>selectedMonths.includes(period.slice(5))&&selectedYears.includes(period.slice(0,4))),highest=Math.max(...periods.map(([,value])=>Math.abs(value.cost)),1);document.getElementById('chart').innerHTML=selectedMonths.map(month=>{const bars=selectedYears.map((year,index)=>{const value=data.periods?.[`${year}-${month}`];if(!value)return '';return `<div class="column" style="height:${Math.max(Math.abs(value.cost)/highest*100,8)}%;background:${colors[index%colors.length]}"><span>${monthNames[Number(month)-1]}<br>${year}<br>${eur(Math.abs(value.cost))}</span></div>`}).join('');return bars}).join('')||'<span class="hint">Zaškrtnite aspoň jeden rok a mesiac.</span>'};yearBox.onchange=draw;monthBox.onchange=draw;draw()}
-function renderResponsiveChart(data){const yearBox=document.getElementById('year-filter'),monthBox=document.getElementById('month-filter'),colors=['#2f6f9f','#c84b4b','#397f72','#8a5a9a','#b77a28','#52677d'];const draw=()=>{const years=[...yearBox.querySelectorAll('input:checked')].map(input=>input.value),months=[...monthBox.querySelectorAll('input:checked')].map(input=>input.value),periods=Object.entries(data.periods||{}),highest=Math.max(...periods.map(([,value])=>Math.abs(value.cost)),1);document.getElementById('chart-legend').innerHTML=years.map((year,index)=>`<span><i style="background:${colors[index%colors.length]}"></i>${year}</span>`).join('');document.getElementById('chart').innerHTML=months.map(month=>`<div class="month-group"><div class="month-bars">${years.map((year,index)=>{const value=data.periods?.[`${year}-${month}`];return value?`<div class="column" title="${year}: ${eur(Math.abs(value.cost))}" style="height:${Math.max(Math.abs(value.cost)/highest*100,8)}%;background:${colors[index%colors.length]}"></div>`:''}).join('')}</div><div class="month-label"><strong>${monthNames[Number(month)-1]}</strong>vybrané roky</div></div>`).join('')||'<span class="hint">Zaškrtnite aspoň jeden rok a mesiac.</span>'};yearBox.querySelectorAll('input').forEach(input=>input.addEventListener('change',draw));monthBox.querySelectorAll('input').forEach(input=>input.addEventListener('change',draw));draw()}
+function renderMonthChecks(data){const yearSelect=document.getElementById('chart-year'),container=document.getElementById('month-filter'),monthsData=data.months||{};const draw=()=>{const year=yearSelect.value,periods=Object.keys(monthsData).filter(period=>year==='all'||period.startsWith(year+'-')).sort(),months=[...new Set(periods.map(period=>period.slice(5)))];container.innerHTML=months.map(month=>`<label><input type="checkbox" value="${month}" checked>${monthNames[Number(month)-1]}</label>`).join('');container.querySelectorAll('input').forEach(input=>input.onchange=()=>drawChart());drawChart()};const drawChart=()=>{const year=yearSelect.value,selected=[...container.querySelectorAll('input:checked')].map(input=>input.value),periods=Object.entries(monthsData).filter(([period])=>(year==='all'||period.startsWith(year+'-'))&&(selected.length===0||selected.includes(period.slice(5)))).sort(),highest=Math.max(...periods.map(([,value])=>Math.abs(value)),1);document.getElementById('chart').innerHTML=periods.map(([period,value])=>`<div class="column" style="height:${Math.max(Math.abs(value)/highest*100,8)}%"><span>${monthNames[Number(period.slice(5))-1]}<br>${period.slice(0,4)}<br>${eur(Math.abs(value))}</span></div>`).join('')||'<span class="hint">Zaškrtnite aspoň jeden mesiac.</span>'};yearSelect.onchange=draw;draw()}
+function renderMultiYearChart(data){const monthsData=data.months||{},years=[...new Set(Object.keys(monthsData).map(period=>period.slice(0,4)))].sort(),yearBox=document.getElementById('year-filter'),monthBox=document.getElementById('month-filter'),colors=['#2f6f9f','#c84b4b','#397f72','#8a5a9a','#b77a28','#52677d'];yearBox.innerHTML=years.map(year=>`<label><input type="checkbox" value="${year}" checked>${year}</label>`).join('');const availableMonths=[...new Set(Object.keys(monthsData).map(period=>period.slice(5)))].sort();monthBox.innerHTML=availableMonths.map(month=>`<label><input type="checkbox" value="${month}" checked>${monthNames[Number(month)-1]}</label>`).join('');document.getElementById('chart-legend').innerHTML=years.map((year,index)=>`<span><i style="background:${colors[index%colors.length]}"></i>${year}</span>`).join('');const draw=()=>{const selectedYears=[...yearBox.querySelectorAll('input:checked')].map(input=>input.value),selectedMonths=[...monthBox.querySelectorAll('input:checked')].map(input=>input.value),periods=Object.entries(monthsData).filter(([period])=>selectedMonths.includes(period.slice(5))&&selectedYears.includes(period.slice(0,4))),highest=Math.max(...periods.map(([,value])=>Math.abs(value)),1);document.getElementById('chart').innerHTML=selectedMonths.map(month=>selectedYears.map((year,index)=>{const value=monthsData[`${year}-${month}`];if(value==null)return '';return `<div class="column" style="height:${Math.max(Math.abs(value)/highest*100,8)}%;background:${colors[index%colors.length]}"><span>${monthNames[Number(month)-1]}<br>${year}<br>${eur(Math.abs(value))}</span></div>`}).join('')).join('')||'<span class="hint">Zaškrtnite aspoň jeden rok a mesiac.</span>'};yearBox.onchange=draw;monthBox.onchange=draw;draw()}
+function renderResponsiveChart(data){const yearBox=document.getElementById('year-filter'),monthBox=document.getElementById('month-filter'),monthsData=data.months||{},colors=['#2f6f9f','#c84b4b','#397f72','#8a5a9a','#b77a28','#52677d'];const draw=()=>{const years=[...yearBox.querySelectorAll('input:checked')].map(input=>input.value),months=[...monthBox.querySelectorAll('input:checked')].map(input=>input.value),periods=Object.values(monthsData),highest=Math.max(...periods.map(Math.abs),1);document.getElementById('chart-legend').innerHTML=years.map((year,index)=>`<span><i style="background:${colors[index%colors.length]}"></i>${year}</span>`).join('');document.getElementById('chart').innerHTML=months.map(month=>`<div class="month-group"><div class="month-bars">${years.map((year,index)=>{const value=monthsData[`${year}-${month}`];return value==null?'':`<div class="column" title="${year}: ${eur(Math.abs(value))}" style="height:${Math.max(Math.abs(value)/highest*100,8)}%;background:${colors[index%colors.length]}"></div>`}).join('')}</div><div class="month-label"><strong>${monthNames[Number(month)-1]}</strong>vybrané roky</div></div>`).join('')||'<span class="hint">Zaškrtnite aspoň jeden rok a mesiac.</span>'};yearBox.querySelectorAll('input').forEach(input=>input.addEventListener('change',draw));monthBox.querySelectorAll('input').forEach(input=>input.addEventListener('change',draw));draw()}
 function saveFilters(){const checked=selector=>[...document.querySelectorAll(selector+':checked')].map(input=>input.value);localStorage.setItem('dashboard-filters',JSON.stringify({years:checked('#year-filter input'),months:checked('#month-filter input'),metrics:checked('.metric-filter input'),compareYear:document.getElementById('compare-year')?.value,compareMonth:document.getElementById('compare-month')?.value}))}
 function restoreFilters(){
  try{
@@ -241,8 +322,147 @@ function restoreFilters(){
   document.querySelector('#year-filter input')?.dispatchEvent(new Event('change'));filterMetrics();saveFilters();
  }catch(error){localStorage.removeItem('dashboard-filters')}
 }
-function addMonthTotals(data){const chart=document.getElementById('chart'),update=()=>{const years=[...document.querySelectorAll('#year-filter input:checked')].map(input=>input.value),months=[...document.querySelectorAll('#month-filter input:checked')].map(input=>input.value);chart.querySelectorAll('.month-group').forEach((group,index)=>{const month=months[index],total=years.reduce((sum,year)=>sum+Math.abs(data.periods?.[`${year}-${month}`]?.cost||0),0),label=group.querySelector('.month-label');if(label)label.innerHTML=`<strong>${monthNames[Number(month)-1]}</strong>${eur(total)}`})};document.querySelectorAll('#year-filter input,#month-filter input').forEach(input=>input.addEventListener('change',update));update()}
-function renderMonthlyBreakdown(data){const chart=document.getElementById('chart'),panel=chart.closest('.panel');let wrapper=document.getElementById('monthly-breakdown');if(!wrapper){wrapper=document.createElement('div');wrapper.id='monthly-breakdown';wrapper.className='monthly-breakdown';chart.after(wrapper)}const draw=()=>{const years=[...document.querySelectorAll('#year-filter input:checked')].map(input=>input.value).sort(),months=[...document.querySelectorAll('#month-filter input:checked')].map(input=>input.value).sort(),headers=years.map(year=>`<th>${year}</th>`).join('');wrapper.innerHTML=`<h3>Rozpis nákladov podľa mesiacov</h3><div class="table-wrap"><table class="comparison-table"><thead><tr><th>Mesiac</th>${headers}<th>Spolu</th></tr></thead><tbody>${months.map(month=>{const values=years.map(year=>Math.abs(data.periods?.[`${year}-${month}`]?.cost||0)),total=values.reduce((sum,value)=>sum+value,0);return `<tr><td>${monthNames[Number(month)-1]}</td>${values.map(value=>`<td>${eur(value)}</td>`).join('')}<td><strong>${eur(total)}</strong></td></tr>`}).join('')||'<tr><td colspan="99">Vyberte aspoň jeden rok a mesiac.</td></tr>'}</tbody></table></div>`};document.querySelectorAll('#year-filter input,#month-filter input').forEach(input=>input.addEventListener('change',draw));draw()}
+function addMonthTotals(data){const chart=document.getElementById('chart'),update=()=>{const years=[...document.querySelectorAll('#year-filter input:checked')].map(input=>input.value),months=[...document.querySelectorAll('#month-filter input:checked')].map(input=>input.value);chart.querySelectorAll('.month-group').forEach((group,index)=>{const month=months[index],total=years.reduce((sum,year)=>sum+Math.abs(data.months?.[`${year}-${month}`]||0),0),label=group.querySelector('.month-label');if(label)label.innerHTML=`<strong>${monthNames[Number(month)-1]}</strong>${eur(total)}`})};document.querySelectorAll('#year-filter input,#month-filter input').forEach(input=>input.addEventListener('change',update));update()}
+function renderMonthlyBreakdown(data){
+ const chart=document.getElementById('chart');
+ let wrapper=document.getElementById('monthly-breakdown');
+ if(!wrapper){
+  wrapper=document.createElement('div');
+  wrapper.id='monthly-breakdown';
+  wrapper.className='monthly-breakdown';
+  chart.after(wrapper);
+ }
+ const categoryOrder=[
+  'Spotreba materiálu a tovaru','Doprava','Mzdy a osobné náklady',
+  'Réžia','Dane a poplatky','Odpisy','Finančné náklady','Daň z príjmov',
+ ];
+ const categoryData=data.monthly_expense_categories||{};
+ const availablePeriods=Object.keys(categoryData)
+  .filter(period=>/^\d{4}-\d{2}$/.test(period));
+ const availableYears=[...new Set(availablePeriods.map(period=>period.slice(0,4)))].sort();
+ wrapper.innerHTML=`<div class="monthly-breakdown-toolbar"><h3>Rozpis nákladov podľa mesiacov</h3><div class="monthly-breakdown-filters"><details class="filter-menu monthly-breakdown-year-menu"><summary id="monthly-breakdown-year-summary">Roky</summary><div id="monthly-breakdown-years" class="year-filter"></div></details><details class="filter-menu monthly-breakdown-month-menu"><summary id="monthly-breakdown-month-summary">Mesiace</summary><div id="monthly-breakdown-months" class="month-filter"></div></details><details class="filter-menu monthly-breakdown-category-menu"><summary id="monthly-breakdown-category-summary">Nákladová skupina</summary><div id="monthly-breakdown-categories" class="month-filter"></div></details></div></div><div class="table-wrap"><table class="comparison-table"><thead><tr id="monthly-breakdown-head"></tr></thead><tbody id="monthly-breakdown-body"></tbody></table></div><p class="hint">Sumy sa počítajú z Vecných položiek podľa dátumu zaúčtovania. Mzdy vychádzajú z účtovej triedy 52. Réžia spája služby (trieda 51) a iné prevádzkové náklady (trieda 54); doprava z účtov 518110 a 518120 je oddelená. Rozdelenie réžie podľa dimenzií nie je možné, pretože dimenzia nie je uvedená pri jednotlivých účtovných riadkoch.</p>`;
+ const yearOptions=wrapper.querySelector('#monthly-breakdown-years');
+ const yearSummary=wrapper.querySelector('#monthly-breakdown-year-summary');
+ const monthOptions=wrapper.querySelector('#monthly-breakdown-months');
+ const monthSummary=wrapper.querySelector('#monthly-breakdown-month-summary');
+ const categoryOptions=wrapper.querySelector('#monthly-breakdown-categories');
+ const categorySummary=wrapper.querySelector('#monthly-breakdown-category-summary');
+ const tableHead=wrapper.querySelector('#monthly-breakdown-head');
+ const tableBody=wrapper.querySelector('#monthly-breakdown-body');
+ const defaultYear=availableYears.includes(String(data.current_year))
+  ?String(data.current_year):availableYears.at(-1);
+ yearOptions.innerHTML=`<label><input id="monthly-breakdown-all-years" type="checkbox">Všetky roky</label>${availableYears.map(year=>`<label><input type="checkbox" value="${year}"${year===defaultYear?' checked':''}>${year}</label>`).join('')}`;
+ const allYearsCheckbox=yearOptions.querySelector('#monthly-breakdown-all-years');
+ const yearInputs=()=>[...yearOptions.querySelectorAll('input[type="checkbox"]')]
+  .filter(input=>input!==allYearsCheckbox);
+ const selectedYears=()=>yearInputs().filter(input=>input.checked).map(input=>input.value);
+ const monthInputs=()=>[...monthOptions.querySelectorAll('input[type="checkbox"]')]
+  .filter(input=>input!==monthOptions.querySelector('#monthly-breakdown-all-months'));
+ const selectedMonths=()=>monthInputs().filter(input=>input.checked).map(input=>input.value);
+ const categoryInputs=()=>[...categoryOptions.querySelectorAll('input[type="checkbox"]')]
+  .filter(input=>input!==categoryOptions.querySelector('#monthly-breakdown-all-categories'));
+ const selectedCategories=()=>categoryInputs().filter(input=>input.checked).map(input=>input.value);
+ const updateYearSummary=()=>{
+  const years=selectedYears();
+  allYearsCheckbox.checked=years.length>0&&years.length===availableYears.length;
+  yearSummary.textContent=years.length===availableYears.length&&years.length
+   ?'Všetky roky':years.length?`Roky: ${years.join(', ')}`:'Vyberte roky';
+ };
+ categoryOptions.innerHTML=`<label><input id="monthly-breakdown-all-categories" type="checkbox" checked>Všetky skupiny</label>${categoryOrder.map(category=>`<label><input type="checkbox" value="${category}" checked>${category}</label>`).join('')}`;
+ const allCategoriesCheckbox=categoryOptions.querySelector('#monthly-breakdown-all-categories');
+ const updateCategorySummary=()=>{
+  const categories=selectedCategories();
+  allCategoriesCheckbox.checked=categories.length===categoryOrder.length;
+  categorySummary.textContent=categories.length===categoryOrder.length
+   ?'Všetky skupiny':categories.length===1
+    ?`Skupina: ${categories[0]}`:categories.length
+     ?`Skupiny: ${categories.length} vybrané`:'Vyberte skupiny';
+ };
+ let monthFilterInitialized=false;
+ const updateMonths=()=>{
+  const previousMonths=selectedMonths();
+  const years=selectedYears();
+  const availableMonths=[...new Set(availablePeriods
+   .filter(period=>years.includes(period.slice(0,4)))
+   .map(period=>period.slice(5)))].sort();
+  let selected=monthFilterInitialized
+   ?previousMonths.filter(month=>availableMonths.includes(month)):availableMonths;
+  if(monthFilterInitialized&&previousMonths.length&&!selected.length)selected=availableMonths;
+  monthOptions.innerHTML=`<label><input id="monthly-breakdown-all-months" type="checkbox">Všetky mesiace</label>${availableMonths.map(month=>`<label><input type="checkbox" value="${month}"${selected.includes(month)?' checked':''}>${monthNames[Number(month)-1]}</label>`).join('')}`;
+  const allMonthsCheckbox=monthOptions.querySelector('#monthly-breakdown-all-months');
+  const updateMonthSummary=()=>{
+   const chosen=selectedMonths();
+   allMonthsCheckbox.checked=chosen.length>0&&chosen.length===availableMonths.length;
+   monthSummary.textContent=chosen.length===availableMonths.length&&chosen.length
+    ?'Všetky mesiace':chosen.length===1
+     ?`Mesiac: ${monthNames[Number(chosen[0])-1]}`:chosen.length
+      ?`Mesiace: ${chosen.length} vybrané`:'Vyberte mesiace';
+  };
+  allMonthsCheckbox.addEventListener('change',()=>{
+   monthInputs().forEach(input=>input.checked=allMonthsCheckbox.checked);
+   updateMonthSummary();draw();
+  });
+  monthInputs().forEach(input=>input.addEventListener('change',()=>{
+   updateMonthSummary();draw();
+  }));
+  monthFilterInitialized=true;
+  updateMonthSummary();
+ };
+ const draw=()=>{
+  const years=selectedYears();
+  const months=selectedMonths();
+  const categories=selectedCategories();
+  const headers=years.map(year=>`<th>${year}</th>`).join('');
+  tableHead.innerHTML=`<th>Mesiac</th><th>Nákladová skupina</th>${headers}<th>Spolu</th>`;
+  const rows=months.flatMap(month=>{
+   const hasData=years.some(year=>
+    Object.prototype.hasOwnProperty.call(categoryData,`${year}-${month}`));
+   if(!hasData){
+    return [`<tr><td>${monthNames[Number(month)-1]}</td><td colspan="${years.length+1}" class="subtle">Mesačné skupiny nie sú v načítaných údajoch. Obnovte prepočet alebo reštartujte aplikáciu.</td></tr>`];
+   }
+   return categories.map((category,index)=>{
+    const values=years.map(year=>
+     Math.abs(categoryData[`${year}-${month}`]?.[category]||0));
+    const total=values.reduce((sum,value)=>sum+value,0);
+    return `<tr><td>${index===0?monthNames[Number(month)-1]:''}</td><td>${category}</td>${values.map(value=>`<td>${eur(value)}</td>`).join('')}<td><strong>${eur(total)}</strong></td></tr>`;
+   });
+  }).join('');
+  tableBody.innerHTML=rows||`<tr><td colspan="${years.length+3}">Pre zvolený filter nie sú údaje.</td></tr>`;
+ };
+ allYearsCheckbox.addEventListener('change',()=>{
+  yearInputs().forEach(input=>input.checked=allYearsCheckbox.checked);
+  updateYearSummary();updateMonths();draw();
+ });
+ yearInputs().forEach(input=>input.addEventListener('change',()=>{
+  updateYearSummary();updateMonths();draw();
+ }));
+ allCategoriesCheckbox.addEventListener('change',()=>{
+  categoryInputs().forEach(input=>input.checked=allCategoriesCheckbox.checked);
+  updateCategorySummary();draw();
+ });
+ categoryInputs().forEach(input=>input.addEventListener('change',()=>{
+  updateCategorySummary();draw();
+ }));
+ updateCategorySummary();
+ updateYearSummary();
+ updateMonths();
+ draw();
+}
+function accountingPeriods(data){
+ const periods=Object.keys(data.monthly_financials||{});
+ return (periods.length?periods:Object.keys(data.report_months||{}).filter(period=>data.report_months[period]?.operating_profit!=null)).sort();
+}
+function accountingValueForPeriod(data,year,month){
+ const entries=accountingPeriods(data).filter(period=>period.startsWith(`${year}-`)&&(month==='all'||period===`${year}-${month}`)).map(period=>[period,data.monthly_financials?.[period]||data.report_months?.[period]]);
+ if(!entries.length)return null;
+ const detailsAvailable=entries.every(([,values])=>['depreciation','interest','subsidies'].every(key=>Number.isFinite(values[key])));
+ return {...entries.reduce((total,[,values])=>{for(const key of ['operating_profit','depreciation','interest','subsidies','net_profit'])total[key]+=(values[key]||0);return total},{operating_profit:0,depreciation:0,interest:0,subsidies:0,net_profit:0}),detailsAvailable};
+}
+function accountingPeriodLabel(data,year,month){
+ if(month!=='all')return monthNames[Number(month)-1]||`Mesiac ${month}`;
+ const periods=accountingPeriods(data).filter(period=>period.startsWith(`${year}-`));
+ return periods.length?`${monthNames[Number(periods[0].slice(5))-1]}–${monthNames[Number(periods.at(-1).slice(5))-1]}`:'dostupné obdobie';
+}
 function clarifyTopMetrics(data){
  const metrics=document.querySelectorAll('#metrics .metric');
  const availableMonths=Object.keys(data.periods||{}).filter(period=>period.startsWith(data.current_year+'-')).sort();
@@ -251,7 +471,8 @@ function clarifyTopMetrics(data){
  if(metrics[1])metrics[1].querySelector('small').textContent=`Priamy náklad tovaru · ${data.current_year} · ${periodLabel}`;
  metrics[2]?.remove();metrics[3]?.remove();metrics[4]?.remove();
  const breakdown=document.createElement('div');breakdown.className='metric';
- breakdown.innerHTML=`<small>Prevádzkový výsledok bez odpisov, úrokov a dotácií · ${data.current_year} · ${periodLabel}</small><strong class="${data.current_year_operating_profit>=0?'positive':'negative'}">${eur(data.current_year_operating_profit)}</strong><div class="subtle">Odpisy: ${eur(data.current_year_depreciation)}<br>Úroky: ${eur(data.current_year_interest)}<br>Dotácie: ${eur(data.current_year_subsidies)}<br>Čistý výsledok podľa účtovníctva:<strong class="${data.current_year_net_profit>=0?'positive':'negative'}">${eur(data.current_year_net_profit)}</strong></div>`;
+ breakdown.id='operating-result-metric';
+ breakdown.innerHTML='<small id="operating-result-label"></small><strong id="operating-result-value"></strong><div id="operating-result-details" class="subtle"></div>';
  document.getElementById('metrics').appendChild(breakdown);
 }
 function renderTopPeriodFilter(data){
@@ -264,11 +485,25 @@ function renderTopPeriodFilter(data){
  const update=()=>{
   const year=yearSelect.value,month=monthSelect.value,value=periodValue(data,year,month);
   const periodLabel=month==='all'?`rok ${year}`:`${monthNames[Number(month)-1]} ${year}`;
-  const netProfit=month==='all'&&year===data.current_year?data.current_year_net_profit:data.monthly_net_profit?.[`${year}-${month}`];
+  const financials=accountingValueForPeriod(data,year,month),netProfit=financials?.net_profit;
   const metrics=document.querySelectorAll('#metrics .metric'),result=metrics[0],cost=metrics[1];
   if(result){result.querySelector('small').textContent=`Tržby · ${periodLabel}`;result.querySelector('strong').textContent=eur(value.revenue)}
   if(cost){cost.querySelector('small').textContent=`Priamy náklad tovaru · ${periodLabel}`;cost.querySelector('strong').textContent=eur(value.cost)}
   card.innerHTML=`<small>Hrubý zisk z predaja · ${periodLabel}</small><strong class="${value.profit>=0?'positive':'negative'}">${eur(value.profit)}</strong><div class="subtle">Čistý výsledok podľa účtovníctva:<strong class="${netProfit==null?'':netProfit>=0?'positive':'negative'}">${netProfit==null?'údaj nie je v účtovníctve dostupný':eur(netProfit)}</strong></div>`;
+  const operatingMetric=document.getElementById('operating-result-metric');
+  if(operatingMetric){
+   const operatingLabel=operatingMetric.querySelector('#operating-result-label'),operatingValue=operatingMetric.querySelector('#operating-result-value'),details=operatingMetric.querySelector('#operating-result-details');
+   operatingLabel.textContent=`Prevádzkový výsledok bez odpisov, úrokov a dotácií · ${year} · ${accountingPeriodLabel(data,year,month)}`;
+   if(financials){
+    operatingValue.textContent=eur(financials.operating_profit);
+    operatingValue.className=financials.operating_profit>=0?'positive':'negative';
+    details.innerHTML=`${financials.detailsAvailable?`Odpisy: ${eur(financials.depreciation)}<br>Úroky: ${eur(financials.interest)}<br>Dotácie: ${eur(financials.subsidies)}<br>`:'Odpisy, úroky a dotácie: údaje nie sú dostupné v tomto prehľade.<br>'}Čistý výsledok podľa účtovníctva:<strong class="${financials.net_profit>=0?'positive':'negative'}">${eur(financials.net_profit)}</strong>`;
+   }else{
+    operatingValue.textContent='Údaj nie je dostupný';
+    operatingValue.className='subtle';
+    details.textContent='Pre vybrané obdobie nie sú v nahratých účtovných tabuľkách údaje.';
+   }
+  }
   card.appendChild(filter);
  };
  const updateMonths=()=>{
@@ -281,7 +516,15 @@ function renderTopPeriodFilter(data){
 document.querySelectorAll('.panel').forEach(panel=>{const button=document.createElement('button');button.className='panel-fullscreen';button.type='button';button.title='Otvoriť panel na celú obrazovku';button.setAttribute('aria-label','Otvoriť panel na celú obrazovku');button.textContent='⛶';button.onclick=()=>{if(document.fullscreenElement===panel)document.exitFullscreen();else panel.requestFullscreen?.()};panel.appendChild(button)});
 document.addEventListener('click',event=>{document.querySelectorAll('.filter-menu[open]').forEach(menu=>{if(!menu.contains(event.target))menu.removeAttribute('open')})});
 document.querySelectorAll('.sidebar-nav button').forEach(button=>button.addEventListener('click',()=>activateSection(button.dataset.section)));
-activateSection(activeSection);
+document.querySelectorAll('#section-tabs [role="tab"]').forEach(tab=>tab.addEventListener('click',()=>activateSectionView(tab.dataset.view)));
+document.getElementById('section-tabs').addEventListener('keydown',event=>{
+ const tabs=[...document.querySelectorAll('#section-tabs [role="tab"]')],current=tabs.indexOf(document.activeElement);
+ if(current<0)return;
+ const next=event.key==='ArrowRight'?(current+1)%tabs.length:event.key==='ArrowLeft'?(current-1+tabs.length)%tabs.length:event.key==='Home'?0:event.key==='End'?tabs.length-1:-1;
+ if(next<0)return;
+ event.preventDefault();tabs[next].focus();tabs[next].click();
+});
+renderActiveView();
 document.getElementById('source-category').onchange=event=>{document.getElementById('source-picker').dataset.category=event.target.value};
 async function runSourceAction(path,payload,successMessage){
  const status=document.getElementById('source-status'),buttons=document.querySelectorAll('.source-action');
@@ -304,8 +547,11 @@ document.getElementById('source-files').addEventListener('click',event=>{
 });
 document.getElementById('recalculate-button').onclick=()=>runSourceAction('/api/recalculate',{},'Údaje boli prepočítané.');
 document.getElementById('source-picker').onchange=async event=>{
- const files=[...event.target.files],category=event.target.dataset.category,status=document.getElementById('source-status');
+ const files=[...event.target.files],categorySelect=document.getElementById('source-category'),status=document.getElementById('source-status');
  if(!files.length)return;
+ const categories=[...categorySelect.options].map(option=>option.value),inferred=files.map(file=>categories.map(key=>({key,prefix:sourceCategories[key].prefix.normalize('NFC')})).filter(item=>file.name.normalize('NFC').includes(item.prefix)).sort((a,b)=>b.prefix.length-a.prefix.length)[0]?.key);
+ if(inferred[0]&&inferred.every(category=>category===inferred[0])){categorySelect.value=inferred[0];categorySelect.dispatchEvent(new Event('change'))}
+ const category=event.target.dataset.category;
  const form=new FormData();form.append('category',category);files.forEach(file=>form.append('files',file));
  status.textContent='Nahrávam súbory…';
  try{
@@ -316,5 +562,5 @@ document.getElementById('source-picker').onchange=async event=>{
  }catch(error){status.textContent=`Nahrávanie zlyhalo: ${error.message}`;event.target.value=''}
 };
 const renderOriginal=render;render=data=>{renderOriginal(data);renderUnassignedRows(data);renderProductProfit(data)};
-fetch('/api/data').then(response=>response.json()).then(data=>{loadedData=data;render(data);clarifyTopMetrics(data);renderTopPeriodFilter(data);renderMultiYearChart(data);document.getElementById('year-filter').onchange=null;document.getElementById('month-filter').onchange=null;renderResponsiveChart(data);addMonthTotals(data);renderMonthlyBreakdown(data);activateSection(activeSection);setTimeout(restoreFilters,0)}).catch(error=>{document.getElementById('chart').innerHTML='<span class="hint">Graf sa nepodarilo načítať.</span>';document.getElementById('source-files').innerHTML='<div class="source-empty">Dáta sa nepodarilo načítať. Skontrolujte, či je server spustený.</div>'});
+fetch('/api/data').then(response=>response.json()).then(data=>{loadedData=data;render(data);clarifyTopMetrics(data);renderTopPeriodFilter(data);renderMultiYearChart(data);document.getElementById('year-filter').onchange=null;document.getElementById('month-filter').onchange=null;renderResponsiveChart(data);addMonthTotals(data);renderMonthlyBreakdown(data);renderActiveView();setTimeout(restoreFilters,0)}).catch(error=>{document.getElementById('chart').innerHTML='<span class="hint">Graf sa nepodarilo načítať.</span>';document.getElementById('source-files').innerHTML='<div class="source-empty">Dáta sa nepodarilo načítať. Skontrolujte, či je server spustený.</div>'});
 </script></body></html>

@@ -11,7 +11,7 @@ import unicodedata
 
 ROOT = Path(__file__).parent
 PORT = 8765
-CACHE_VERSION = 25
+CACHE_VERSION = 30
 NS = {'m': 'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
 UPLOAD_CATEGORIES = {
     'items': 'Položky tovaru',
@@ -21,6 +21,14 @@ UPLOAD_CATEGORIES = {
     'deliveries': 'Účtované predajné dodávky',
     'customer-directory': 'Zoznam zákazníkov',
     'dimensions': 'Dimenzie',
+}
+WORKBOOK_SHEET_CATEGORIES = {
+    'Položky tovaru': 'items',
+    'Vecné položky': 'ledger',
+    'Položky dodávateľa': 'suppliers',
+    'Položky zákazníka': 'customers',
+    'Účtované predajné dodávky': 'deliveries',
+    'Zoznam zákazníkov': 'customer-directory',
 }
 
 def cell_value(cell, shared):
@@ -206,6 +214,17 @@ def _load_data():
     account_path_order = {path: index for index, path in enumerate(account_paths)}
     periods = {}
     categories_by_year = {}
+    monthly_expense_categories = {}
+    monthly_account_labels = {
+        '50': 'Spotreba materiálu a tovaru',
+        '51': 'Réžia',
+        '52': 'Mzdy a osobné náklady',
+        '53': 'Dane a poplatky',
+        '54': 'Réžia',
+        '55': 'Odpisy',
+        '56': 'Finančné náklady',
+        '59': 'Daň z príjmov',
+    }
     customer_profit = {}
     customer_revenue = {}
     customer_cost = {}
@@ -273,11 +292,17 @@ def _load_data():
                     account_labels = {'50': 'Spotreba materiálu a tovaru', '51': 'Služby',
                                       '52': 'Osobné náklady', '53': 'Dane a poplatky',
                                       '54': 'Iné prevádzkové náklady', '55': 'Odpisy',
-                                      '56': 'Finančné náklady'}
-                    label = account_labels.get(account[:2], f'Účty {account[:2]}x')
+                                      '56': 'Finančné náklady', '59': 'Daň z príjmov'}
+                    label = ('Doprava' if account in {'518110', '518120'}
+                             else account_labels.get(account[:2], f'Účty {account[:2]}x'))
+                    monthly_label = ('Doprava' if account in {'518110', '518120'}
+                                     else monthly_account_labels.get(
+                                         account[:2], f'Účty {account[:2]}x'))
                     categories[label] = categories.get(label, 0) + amount
                     month = date_label(row.get('A'))
                     months[month] = months.get(month, 0) + amount
+                    month_categories = monthly_expense_categories.setdefault(month, {})
+                    month_categories[monthly_label] = month_categories.get(monthly_label, 0) + amount
                     year_categories = categories_by_year.setdefault(month[:4], {})
                     year_categories[label] = year_categories.get(label, 0) + amount
                 elif normalized_name.startswith('Položky dodávateľa'):
@@ -559,11 +584,17 @@ def _load_data():
         sales = periods.get(period, {})
         accounting = accounting_periods.get(period, {})
         report_months[period] = {
+            'sales_available': period in periods,
+            'accounting_available': period in accounting_periods,
             'revenue': sales.get('revenue', 0),
             'direct_cost': sales.get('cost', 0),
+            'quantity': sales.get('quantity', 0),
             'transport': delivery_transport_by_period.get(period, 0),
             'accounting_cost': accounting.get('expense', 0),
             'operating_profit': accounting.get('operating_profit', 0),
+            'depreciation': accounting.get('depreciation', 0),
+            'interest': accounting.get('interest', 0),
+            'subsidies': accounting.get('subsidies', 0),
             'net_profit': accounting.get('net_profit', 0),
         }
     current_year_cost = sum(value for period, value in months.items() if period.startswith(current_year))
@@ -601,6 +632,7 @@ def _load_data():
             'current_year_subsidies': rozbor.get('subsidies', 0),
             'current_year_net_profit': rozbor.get('net_profit_after_adjustments', 0),
             'monthly_net_profit': rozbor.get('monthly_net_profit', {}),
+            'monthly_financials': rozbor.get('monthly_financials', {}),
             'report_months': report_months,
             'report_ytd': {
                 'operating_profit': rozbor.get('operating_profit', 0),
@@ -614,7 +646,8 @@ def _load_data():
             'shared_cost': shared_cost, 'customer_shared_cost': customer_shared_cost,
             'customer_transport_cost': customer_transport_cost,
             'customer_net_profit': customer_net_profit, 'categories': categories,
-            'months': months, 'periods': periods, 'annual': annual,
+            'months': months, 'monthly_expense_categories': monthly_expense_categories,
+            'periods': periods, 'annual': annual,
             'suppliers': suppliers, 'customers': customers,
             'customer_profit': customer_profit, 'customer_revenue': customer_revenue,
             'customer_cost': customer_cost, 'customer_quantity': customer_quantity,
@@ -804,8 +837,25 @@ class Handler(BaseHTTPRequestHandler):
                 with ZipFile(BytesIO(content)) as workbook:
                     if 'xl/workbook.xml' not in workbook.namelist():
                         raise BadZipFile
-            except (BadZipFile, OSError):
+                    workbook_root = ET.fromstring(workbook.read('xl/workbook.xml'))
+                    sheet_names = [sheet.attrib.get('name', '')
+                                   for sheet in workbook_root.findall('.//m:sheet', NS)]
+            except (BadZipFile, OSError, ET.ParseError):
                 self.send_json({'ok': False, 'error': f'Súbor {name} nie je platná Excel tabuľka.'}, 400)
+                return
+            actual_category = next(
+                (WORKBOOK_SHEET_CATEGORIES[sheet] for sheet in sheet_names
+                 if sheet in WORKBOOK_SHEET_CATEGORIES),
+                None,
+            )
+            if actual_category and actual_category != category:
+                self.send_json({
+                    'ok': False,
+                    'error': (
+                        f'Súbor obsahuje hárok „{next(sheet for sheet in sheet_names if sheet in WORKBOOK_SHEET_CATEGORIES)}“. '
+                        f'Vyberte typ tabuľky „{UPLOAD_CATEGORIES[actual_category]}“.'
+                    ),
+                }, 400)
                 return
             normalized_prefix = unicodedata.normalize('NFC', prefix)
             destination_name = (
